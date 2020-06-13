@@ -15,10 +15,9 @@
     "sourceMap": true,
     "declaration": true,
     "outDir": "dist",
-    "typeRoots" : ["node_modules/@types"]
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
   ],
   "exclude": [
     "node_modules",
