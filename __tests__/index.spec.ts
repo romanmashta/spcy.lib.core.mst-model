@@ -1,29 +1,21 @@
-import { getSnapshot, Instance, types } from 'mobx-state-tree';
+import _ from 'lodash';
+import { resolve } from 'path';
+import { buildModule } from '../src';
 
-import { sayHi, sayBye } from '../src';
+const ROOT = '__tests__/cases';
 
-const BasicTypes = types.union(types.literal('boolean'), types.literal('number'), types.literal('string'));
+const assertModel = (caseName: string) => {
+  const caseFile = resolve(`${ROOT}/${caseName}.ts`);
+  const { testCase } = require(caseFile);
 
-const TypeInfo = types.union(BasicTypes);
+  const model = buildModule(testCase.meta);
+  const expected = testCase.tree;
+  const result = _.mapValues(model, t => t.describe());
+  expect(expected).toEqual(result);
+};
 
-const TypeLiteral = types.model('TypeLiteral', {
-  properties: types.map(TypeInfo),
-});
+const caseNames = ['array', 'basic-interface', 'one-of'];
 
-test('It says Hi', () => {
-  const i = {
-    properties: {
-      firstName: 'string',
-      lastName: 'string',
-      age: 'number',
-      isActive: 'boolean',
-    },
-  };
-
-  const x = TypeLiteral.create(i);
-  console.log(getSnapshot(x));
-});
-
-test('It says Bye', () => {
-  expect(sayBye('Me')).toBe('Bye Me');
+it.each(caseNames)('Process model %s', caseName => {
+  assertModel(caseName);
 });
