@@ -1,6 +1,13 @@
 import { TestCase } from './test-case';
 
-export const testCase: TestCase = {
+export interface Person {
+  firstName: string;
+  lastName: string;
+  age: number;
+  isActive: boolean;
+}
+
+export const testCase: TestCase<Person> = {
   meta: {
     $defs: {
       Person: {
@@ -24,5 +31,11 @@ export const testCase: TestCase = {
   },
   tree: {
     Person: '{ firstName: string; lastName: string; age: number; isActive: boolean }'
+  },
+  data: {
+    age: 20,
+    firstName: 'John',
+    lastName: 'Deer',
+    isActive: true
   }
 };

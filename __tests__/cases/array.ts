@@ -1,6 +1,15 @@
 import { TestCase } from './test-case';
 
-export const testCase: TestCase = {
+export interface Config {
+  colors: string[];
+  params: {
+    key: string;
+    value: string;
+    index: number;
+  }[];
+}
+
+export const testCase: TestCase<Config> = {
   meta: {
     $defs: {
       Config: {
@@ -27,5 +36,9 @@ export const testCase: TestCase = {
   },
   tree: {
     Config: '{ colors: string[]?; params: { index: number; key: string; value: string }[]? }'
+  },
+  data: {
+    colors: ['red', 'gree', 'blue'],
+    params: [{ key: 'one', value: 'v1', index: 0 }]
   }
 };

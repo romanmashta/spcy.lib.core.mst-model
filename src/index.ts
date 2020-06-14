@@ -10,6 +10,20 @@ const simpleMap = {
   null: types.null
 };
 
+type TypeCache = { [name: string]: IAnyType };
+
+class Repository {
+  private repo: TypeCache = {};
+
+  resolve = (ref: string): IAnyType => this.repo[ref];
+
+  register(defs: TypeCache) {
+    this.repo = _.reduce(defs, (r, def, ref) => ({ ...r, [`#/$defs/${ref}`]: def }), this.repo);
+  }
+}
+
+const GlobalRepository = new Repository();
+
 class ModelBuilder {
   buildModel = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType =>
     types.model(name || 'Object', _.mapValues(def.properties, this.buildType));
@@ -20,7 +34,7 @@ class ModelBuilder {
 
   buildOneOf = (def: cr.OneOf): IAnyType => types.union(..._.map(def.oneOf, t => this.buildType(t)));
 
-  buildTypeReference = (def: cr.TypeReference): IAnyType => types.late(() => types.literal(def.$ref));
+  buildTypeReference = (def: cr.TypeReference): IAnyType => types.late(() => GlobalRepository.resolve(def.$ref));
 
   buildType = (def: cr.TypeInfo, name: string | undefined = undefined): IAnyType => {
     if (cr.isObjectType(def)) return this.buildModel(def, name);
@@ -31,8 +45,11 @@ class ModelBuilder {
     return types.null;
   };
 
-  buildModule = (module: cr.Module): { [name: string]: IAnyType } =>
-    _.mapValues(module.$defs, (def, name) => this.buildType(def, name));
+  buildModule = (module: cr.Module): { [name: string]: IAnyType } => {
+    const definitions = _.mapValues(module.$defs, (def, name) => this.buildType(def, name));
+    GlobalRepository.register(definitions);
+    return definitions;
+  };
 }
 
 export const buildModule = (module: cr.Module): { [name: string]: IAnyType } => new ModelBuilder().buildModule(module);
