@@ -1,5 +1,7 @@
 import { TestCase } from './test-case';
 
+import _ from 'lodash';
+
 export type TypeInfo = ObjectType | SimpleType | ArrayType | TypeReference | EnumType | ConstLiteral | OneOf | AllOf;
 
 export interface TypeReference {
@@ -25,6 +27,7 @@ export interface SimpleType {
 
 export interface ObjectType {
   type: 'object';
+  required?: string[];
   properties?: {
     [name: string]: TypeInfo;
   };
@@ -50,185 +53,203 @@ export interface MetaInfo {
   hasErrors: boolean;
 }
 
-export const testCase: TestCase<Module> = {
-  meta: {
-    $defs: {
-      TypeInfo: {
-        oneOf: [
-          {
-            $ref: '#/$defs/ObjectType'
-          },
-          {
-            $ref: '#/$defs/SimpleType'
-          },
-          {
-            $ref: '#/$defs/ArrayType'
-          },
-          {
-            $ref: '#/$defs/TypeReference'
-          },
-          {
-            $ref: '#/$defs/EnumType'
-          },
-          {
-            $ref: '#/$defs/ConstLiteral'
-          },
-          {
-            $ref: '#/$defs/OneOf'
-          },
-          {
-            $ref: '#/$defs/AllOf'
-          }
-        ]
-      },
-      TypeReference: {
-        type: 'object',
-        properties: {
-          $ref: {
+const metaSchema: Module = {
+  $defs: {
+    TypeInfo: {
+      oneOf: [
+        {
+          $ref: '#/$defs/ObjectType'
+        },
+        {
+          $ref: '#/$defs/SimpleType'
+        },
+        {
+          $ref: '#/$defs/ArrayType'
+        },
+        {
+          $ref: '#/$defs/TypeReference'
+        },
+        {
+          $ref: '#/$defs/EnumType'
+        },
+        {
+          $ref: '#/$defs/ConstLiteral'
+        },
+        {
+          $ref: '#/$defs/OneOf'
+        },
+        {
+          $ref: '#/$defs/AllOf'
+        }
+      ]
+    },
+    TypeReference: {
+      type: 'object',
+      required: ['$ref'],
+      properties: {
+        $ref: {
+          type: 'string'
+        }
+      }
+    },
+    ArrayType: {
+      type: 'object',
+      required: ['type', 'items'],
+      properties: {
+        type: {
+          const: 'array'
+        },
+        items: {
+          $ref: '#/$defs/TypeInfo'
+        }
+      }
+    },
+    ConstLiteral: {
+      type: 'object',
+      required: ['const'],
+      properties: {
+        const: {
+          oneOf: [
+            {
+              type: 'string'
+            },
+            {
+              type: 'number'
+            },
+            {
+              type: 'boolean'
+            },
+            {
+              type: 'null'
+            }
+          ]
+        }
+      }
+    },
+    EnumType: {
+      type: 'object',
+      required: ['enum'],
+      properties: {
+        enum: {
+          type: 'array',
+          items: {
             type: 'string'
           }
         }
-      },
-      ArrayType: {
-        type: 'object',
+      }
+    },
+    SimpleType: {
+      type: 'object',
+      required: ['type'],
+      properties: {
+        type: {
+          oneOf: [
+            {
+              const: 'string'
+            },
+            {
+              const: 'number'
+            },
+            {
+              const: 'boolean'
+            },
+            {
+              const: 'date'
+            },
+            {
+              const: 'null'
+            }
+          ]
+        }
+      }
+    },
+    ObjectType: {
+      type: 'object',
+      required: ['type'],
+      properties: {
+        type: {
+          const: 'object'
+        },
+        required: {
+          type: 'array',
+          items: {
+            type: 'string'
+          }
+        },
         properties: {
-          type: {
-            const: 'array'
-          },
+          type: 'object',
+          additionalProperties: {
+            $ref: '#/$defs/TypeInfo'
+          }
+        },
+        additionalProperties: {
+          oneOf: [
+            {
+              $ref: '#/$defs/TypeInfo'
+            },
+            {
+              type: 'boolean'
+            }
+          ]
+        }
+      }
+    },
+    OneOf: {
+      type: 'object',
+      required: ['oneOf'],
+      properties: {
+        oneOf: {
+          type: 'array',
           items: {
             $ref: '#/$defs/TypeInfo'
           }
         }
-      },
-      ConstLiteral: {
-        type: 'object',
-        properties: {
-          const: {
-            oneOf: [
-              {
-                type: 'string'
-              },
-              {
-                type: 'number'
-              },
-              {
-                type: 'boolean'
-              },
-              {
-                type: 'null'
-              }
-            ]
-          }
-        }
-      },
-      EnumType: {
-        type: 'object',
-        properties: {
-          enum: {
-            type: 'array',
-            items: {
-              type: 'string'
-            }
-          }
-        }
-      },
-      SimpleType: {
-        type: 'object',
-        properties: {
-          type: {
-            oneOf: [
-              {
-                const: 'string'
-              },
-              {
-                const: 'number'
-              },
-              {
-                const: 'boolean'
-              },
-              {
-                const: 'date'
-              },
-              {
-                const: 'null'
-              }
-            ]
-          }
-        }
-      },
-      ObjectType: {
-        type: 'object',
-        properties: {
-          type: {
-            const: 'object'
-          },
-          properties: {
-            type: 'object',
-            additionalProperties: {
-              $ref: '#/$defs/TypeInfo'
-            }
-          },
-          additionalProperties: {
-            oneOf: [
-              {
-                $ref: '#/$defs/TypeInfo'
-              },
-              {
-                type: 'boolean'
-              }
-            ]
-          }
-        }
-      },
-      OneOf: {
-        type: 'object',
-        properties: {
-          oneOf: {
-            type: 'array',
-            items: {
-              $ref: '#/$defs/TypeInfo'
-            }
-          }
-        }
-      },
-      AllOf: {
-        type: 'object',
-        properties: {
-          allOf: {
-            type: 'array',
-            items: {
-              $ref: '#/$defs/TypeInfo'
-            }
-          }
-        }
-      },
-      Module: {
-        type: 'object',
-        properties: {
-          $defs: {
-            type: 'object',
-            additionalProperties: {
-              $ref: '#/$defs/TypeInfo'
-            }
-          }
-        }
-      },
-      MetaInfo: {
-        type: 'object',
-        properties: {
-          modules: {
-            type: 'array',
-            items: {
-              $ref: '#/$defs/Module'
-            }
-          },
-          hasErrors: {
-            type: 'boolean'
+      }
+    },
+    AllOf: {
+      type: 'object',
+      required: ['allOf'],
+      properties: {
+        allOf: {
+          type: 'array',
+          items: {
+            $ref: '#/$defs/TypeInfo'
           }
         }
       }
+    },
+    Module: {
+      type: 'object',
+      required: ['$defs'],
+      properties: {
+        $defs: {
+          type: 'object',
+          additionalProperties: {
+            $ref: '#/$defs/TypeInfo'
+          }
+        }
+      }
+    },
+    MetaInfo: {
+      type: 'object',
+      required: ['modules', 'hasErrors'],
+      properties: {
+        modules: {
+          type: 'array',
+          items: {
+            $ref: '#/$defs/Module'
+          }
+        },
+        hasErrors: {
+          type: 'boolean'
+        }
+      }
     }
-  },
+  }
+};
+
+export const testCase: TestCase<Module> = {
+  meta: metaSchema,
   tree: {
     AllOf:
       '{ allOf: (late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }))[]? }',
@@ -240,32 +261,13 @@ export const testCase: TestCase<Module> = {
     Module:
       '{ $defs: Map<string, (late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }))>? }',
     ObjectType:
-      '{ type: "object"; properties: Map<string, (late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }))>?; additionalProperties: ((late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); })) | boolean) }',
+      '{ type: "object"; required: (string[] | undefined?); properties: (Map<string, (late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }))> | undefined?); additionalProperties: (((late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); })) | boolean) | undefined?) }',
     OneOf:
       '{ oneOf: (late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }))[]? }',
     SimpleType: '{ type: ("string" | "number" | "boolean" | "date" | "null") }',
     TypeInfo: '(ObjectType | SimpleType | ArrayType | TypeReference | EnumType | ConstLiteral | OneOf | AllOf)',
     TypeReference: '{ $ref: string }'
   },
-  data: {
-    $defs: {
-      Person: {
-        type: 'object',
-        properties: {
-          firstName: {
-            type: 'string'
-          },
-          lastName: {
-            type: 'string'
-          },
-          age: {
-            type: 'number'
-          },
-          isActive: {
-            type: 'boolean'
-          }
-        }
-      }
-    }
-  }
+  rootType: 'Module',
+  data: metaSchema
 };

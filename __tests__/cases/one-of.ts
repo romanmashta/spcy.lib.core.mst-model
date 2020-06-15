@@ -40,6 +40,7 @@ export const testCase: TestCase<Picture> = {
       },
       Circle: {
         type: 'object',
+        required: ['radius'],
         properties: {
           radius: {
             type: 'number'
@@ -48,6 +49,7 @@ export const testCase: TestCase<Picture> = {
       },
       Square: {
         type: 'object',
+        required: ['side'],
         properties: {
           side: {
             type: 'number'
@@ -59,10 +61,11 @@ export const testCase: TestCase<Picture> = {
   tree: {
     Circle: '{ radius: number }',
     Picture:
-      '{ figures: (late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }))[]? }',
+      '{ figures: ((late(function () { return GlobalRepository.resolve(def.$ref); }) | late(function () { return GlobalRepository.resolve(def.$ref); }))[] | undefined?) }',
     Shapes: '(Circle | Square)',
     Square: '{ side: number }'
   },
+  rootType: 'Picture',
   data: {
     figures: [{ side: 10 }, { radius: 20 }, { side: 1 }]
   }

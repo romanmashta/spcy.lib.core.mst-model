@@ -5,5 +5,6 @@ export interface TestCase<T> {
   tree: {
     [name: string]: string;
   };
+  rootType: string;
   data?: T;
 }

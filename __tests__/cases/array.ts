@@ -35,8 +35,10 @@ export const testCase: TestCase<Config> = {
     }
   },
   tree: {
-    Config: '{ colors: string[]?; params: { index: number; key: string; value: string }[]? }'
+    Config:
+      '{ colors: (string[] | undefined?); params: ({ index: (number | undefined?); key: (string | undefined?); value: (string | undefined?) }[] | undefined?) }'
   },
+  rootType: 'Config',
   data: {
     colors: ['red', 'gree', 'blue'],
     params: [{ key: 'one', value: 'v1', index: 0 }]

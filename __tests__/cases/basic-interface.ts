@@ -5,6 +5,10 @@ export interface Person {
   lastName: string;
   age: number;
   isActive: boolean;
+  location: {
+    lat: number;
+    lon: number;
+  };
 }
 
 export const testCase: TestCase<Person> = {
@@ -42,12 +46,17 @@ export const testCase: TestCase<Person> = {
   },
   tree: {
     Person:
-      '{ firstName: string; lastName: string; age: number; isActive: boolean; location: { lat: number; lon: number } }'
+      '{ firstName: (string | undefined?); lastName: (string | undefined?); age: (number | undefined?); isActive: (boolean | undefined?); location: ({ lat: (number | undefined?); lon: (number | undefined?) } | undefined?) }'
   },
+  rootType: 'Person',
   data: {
     age: 20,
     firstName: 'John',
     lastName: 'Deer',
-    isActive: true
+    isActive: true,
+    location: {
+      lat: 10,
+      lon: 10
+    }
   }
 };

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { IAnyType, types } from 'mobx-state-tree';
 import * as cr from '@spcy/lib.core.reflection';
+import { IArrayType } from 'mobx-state-tree/dist/types/complex-types/array';
 
 const simpleMap = {
   string: types.string,
@@ -28,7 +29,12 @@ class ModelBuilder {
   buildModel = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType =>
     _.isObject(def.additionalProperties)
       ? types.map(this.buildType(def.additionalProperties))
-      : types.model(name || 'Object', _.mapValues(def.properties, this.buildType));
+      : types.model(
+          name || 'Object',
+          _.mapValues(def.properties, (p: cr.TypeInfo, key: string) =>
+            _.includes(def.required, key) ? this.buildType(p) : types.maybe(this.buildType(p))
+          )
+        );
 
   buildSimpleType = (def: cr.SimpleType): IAnyType => simpleMap[def.type];
 

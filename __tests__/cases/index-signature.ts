@@ -33,8 +33,9 @@ export const testCase: TestCase<Config> = {
   },
   tree: {
     Config: 'Map<string, Section>',
-    Section: '{ id: string; secret: string }'
+    Section: '{ id: (string | undefined?); secret: (string | undefined?) }'
   },
+  rootType: 'Config',
   data: {
     chat: { id: 'xxx', secret: 'zzzz' },
     server: { id: 'xxx', secret: 'zzzz' }
