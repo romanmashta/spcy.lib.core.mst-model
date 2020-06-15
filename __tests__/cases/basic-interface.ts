@@ -24,13 +24,25 @@ export const testCase: TestCase<Person> = {
           },
           isActive: {
             type: 'boolean'
+          },
+          location: {
+            type: 'object',
+            properties: {
+              lat: {
+                type: 'number'
+              },
+              lon: {
+                type: 'number'
+              }
+            }
           }
         }
       }
     }
   },
   tree: {
-    Person: '{ firstName: string; lastName: string; age: number; isActive: boolean }'
+    Person:
+      '{ firstName: string; lastName: string; age: number; isActive: boolean; location: { lat: number; lon: number } }'
   },
   data: {
     age: 20,
