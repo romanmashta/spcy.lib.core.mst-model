@@ -1,7 +1,6 @@
 import _ from 'lodash';
-import { IAnyType, types } from 'mobx-state-tree';
+import { IAnyType, types } from '@spcy/pub.mobx-state-tree';
 import * as cr from '@spcy/lib.core.reflection';
-import { IArrayType } from 'mobx-state-tree/dist/types/complex-types/array';
 
 const simpleMap = {
   string: types.string,
