@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { IAnyType, types } from '@spcy/pub.mobx-state-tree';
 import * as cr from '@spcy/lib.core.reflection';
+import { Repository } from './repository';
 
 const simpleMap = {
   string: types.string,
@@ -9,18 +10,6 @@ const simpleMap = {
   date: types.Date,
   null: types.null
 };
-
-type TypeCache = { [name: string]: IAnyType };
-
-class Repository {
-  private repo: TypeCache = {};
-
-  resolve = (ref: string): IAnyType => this.repo[ref];
-
-  register(defs: TypeCache) {
-    this.repo = _.reduce(defs, (r, def, ref) => ({ ...r, [`#/$defs/${ref}`]: def }), this.repo);
-  }
-}
 
 const GlobalRepository = new Repository();
 
