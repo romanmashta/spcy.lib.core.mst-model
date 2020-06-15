@@ -14,7 +14,7 @@ const assertModel = (caseName: string) => {
   expect(expected).toEqual(result);
 };
 
-const caseNames = ['array', 'basic-interface', 'one-of'];
+const caseNames = ['array', 'basic-interface', 'one-of', 'index-signature'];
 
 it.each(caseNames)('Process model %s', caseName => {
   assertModel(caseName);

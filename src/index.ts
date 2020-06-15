@@ -26,7 +26,9 @@ const GlobalRepository = new Repository();
 
 class ModelBuilder {
   buildModel = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType =>
-    types.model(name || 'Object', _.mapValues(def.properties, this.buildType));
+    _.isObject(def.additionalProperties)
+      ? types.map(this.buildType(def.additionalProperties))
+      : types.model(name || 'Object', _.mapValues(def.properties, this.buildType));
 
   buildSimpleType = (def: cr.SimpleType): IAnyType => simpleMap[def.type];
 
