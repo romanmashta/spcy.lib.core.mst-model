@@ -1,7 +1,5 @@
 import { TestCase } from './test-case';
 
-import _ from 'lodash';
-
 export type TypeInfo = ObjectType | SimpleType | ArrayType | TypeReference | EnumType | ConstLiteral | OneOf | AllOf;
 
 export interface TypeReference {

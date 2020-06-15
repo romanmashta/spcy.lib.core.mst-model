@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { IAnyType } from '@spcy/pub.mobx-state-tree';
 
 type TypeCache = { [name: string]: IAnyType };

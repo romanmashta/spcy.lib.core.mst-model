@@ -1,7 +1,7 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { resolve } from 'path';
-import { buildModule } from '../src';
 import { getSnapshot } from '@spcy/pub.mobx-state-tree';
+import { buildModule } from '../src';
 
 const ROOT = '__tests__/cases';
 

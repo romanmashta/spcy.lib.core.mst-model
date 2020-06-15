@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { IAnyType, types } from '@spcy/pub.mobx-state-tree';
 import * as cr from '@spcy/lib.core.reflection';
 import { Repository } from './repository';
