@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@spcy/lib.core.reflection": "^1.0.0",
+    "@spcy/pub.mobx-state-tree": "^3.16.0",
     "mobx": "^5.15.4",
-    "mobx-state-tree": "^3.16.0",
     "lodash": "^4.17.15"
   }
 }
