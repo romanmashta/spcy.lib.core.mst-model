@@ -38,12 +38,15 @@ class ModelBuilder {
 
   buildTypeReference = (def: cr.TypeReference): IAnyType => types.late(() => GlobalRepository.resolve(def.$ref));
 
+  buildConstLiteral = (def: cr.ConstLiteral): IAnyType => types.literal(def.const);
+
   buildType = (def: cr.TypeInfo, name: string | undefined = undefined): IAnyType => {
     if (cr.isObjectType(def)) return this.buildModel(def, name);
     if (cr.isSimpleType(def)) return this.buildSimpleType(def);
     if (cr.isArrayType(def)) return this.buildArray(def);
     if (cr.isOneOf(def)) return this.buildOneOf(def);
     if (cr.isTypeReference(def)) return this.buildTypeReference(def);
+    if (cr.isConstLiteral(def)) return this.buildConstLiteral(def);
     return types.null;
   };
 
