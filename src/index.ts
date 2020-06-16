@@ -3,14 +3,6 @@ import { IAnyType, types } from '@spcy/pub.mobx-state-tree';
 import * as cr from '@spcy/lib.core.reflection';
 import { Repository } from './repository';
 
-const simpleMap = {
-  string: types.string,
-  number: types.number,
-  boolean: types.boolean,
-  date: types.Date,
-  null: types.null
-};
-
 const GlobalRepository = new Repository();
 
 class ModelBuilder {
@@ -24,7 +16,15 @@ class ModelBuilder {
           )
         );
 
-  buildSimpleType = (def: cr.SimpleType): IAnyType => simpleMap[def.type];
+  buildStringType = (): IAnyType => types.string;
+
+  buildNumberType = (): IAnyType => types.number;
+
+  buildBooleanType = (): IAnyType => types.boolean;
+
+  buildDateType = (): IAnyType => types.Date;
+
+  buildNullType = (): IAnyType => types.null;
 
   buildArray = (def: cr.ArrayType): IAnyType => types.array(this.buildType(def.items));
 
@@ -36,7 +36,11 @@ class ModelBuilder {
 
   buildType = (def: cr.TypeInfo, name: string | undefined = undefined): IAnyType => {
     if (cr.isObjectType(def)) return this.buildModel(def, name);
-    if (cr.isSimpleType(def)) return this.buildSimpleType(def);
+    if (cr.isStringType(def)) return this.buildStringType();
+    if (cr.isNumberType(def)) return this.buildNumberType();
+    if (cr.isBooleanType(def)) return this.buildBooleanType();
+    if (cr.isDateType(def)) return this.buildDateType();
+    if (cr.isNullType(def)) return this.buildNullType();
     if (cr.isArrayType(def)) return this.buildArray(def);
     if (cr.isOneOf(def)) return this.buildOneOf(def);
     if (cr.isTypeReference(def)) return this.buildTypeReference(def);
