@@ -6,7 +6,7 @@ import { buildModule } from '../src';
 const ROOT = '__tests__/cases';
 
 const assertModel = (caseName: string) => {
-  const caseFile = resolve(`${ROOT}/${caseName}.ts`);
+  const caseFile = resolve(`${ROOT}/${caseName}/index.ts`);
   const { testCase } = require(caseFile);
 
   const model = buildModule(testCase.meta);

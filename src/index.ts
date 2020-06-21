@@ -49,7 +49,11 @@ class ModelBuilder {
   };
 
   buildModule = (module: cr.Module): { [name: string]: IAnyType } => {
-    const definitions = _.mapValues(module.$defs, (def, name) => this.buildType(def, name));
+    const definitions = _.reduce(
+      module.$defs,
+      (r, def) => ({ ...r, [def.$id || '']: this.buildType(def, def.$id) }),
+      {}
+    );
     GlobalRepository.register(definitions);
     return definitions;
   };
