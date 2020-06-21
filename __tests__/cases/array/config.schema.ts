@@ -1,4 +1,4 @@
-import { TypeInfo, Module } from '@spcy/lib.core.reflection';
+import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
 
 export const ConfigSchema: TypeInfo = {
   $id: '@spcy/lib.core.mst-model/Config',
@@ -31,6 +31,7 @@ export const ConfigSchema: TypeInfo = {
     }
   }
 };
+SchemaRepository.register(ConfigSchema);
 
 export const MetaSchema: Module = {
   $defs: {

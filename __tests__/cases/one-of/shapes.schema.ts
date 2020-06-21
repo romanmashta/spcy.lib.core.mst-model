@@ -1,4 +1,4 @@
-import { TypeInfo, Module } from '@spcy/lib.core.reflection';
+import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
 
 export const ShapesSchema: TypeInfo = {
   $id: '@spcy/lib.core.mst-model/Shapes',
@@ -11,6 +11,7 @@ export const ShapesSchema: TypeInfo = {
     }
   ]
 };
+SchemaRepository.register(ShapesSchema);
 
 export const PictureSchema: TypeInfo = {
   $id: '@spcy/lib.core.mst-model/Picture',
@@ -25,6 +26,7 @@ export const PictureSchema: TypeInfo = {
     }
   }
 };
+SchemaRepository.register(PictureSchema);
 
 export const CircleSchema: TypeInfo = {
   $id: '@spcy/lib.core.mst-model/Circle',
@@ -36,6 +38,7 @@ export const CircleSchema: TypeInfo = {
     }
   }
 };
+SchemaRepository.register(CircleSchema);
 
 export const SquareSchema: TypeInfo = {
   $id: '@spcy/lib.core.mst-model/Square',
@@ -47,6 +50,7 @@ export const SquareSchema: TypeInfo = {
     }
   }
 };
+SchemaRepository.register(SquareSchema);
 
 export const MetaSchema: Module = {
   $defs: {
