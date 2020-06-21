@@ -21,7 +21,7 @@ const assertModel = (caseName: string) => {
   expect(snap).toEqual(testCase.data);
 };
 
-const caseNames = ['array', 'basic-interface', 'one-of', 'index-signature', 'meta-schema'];
+const caseNames = ['array', 'basic-interface', 'one-of', 'index-signature', 'meta-schema', 'inheritance'];
 
 it.each(caseNames)('Process model %s', caseName => {
   assertModel(caseName);
