@@ -1,16 +1,16 @@
 import { TestCase } from '../test-case';
-import { Person } from './person.model';
+import { PersonEntity } from './person.model';
 import { MetaSchema } from './person.schema';
 
-export const testCase: TestCase<Person> = {
+export const testCase: TestCase<PersonEntity> = {
   meta: MetaSchema,
   tree: {
     '@spcy/lib.core.mst-model/Audit': '{ createdOn: string; updatedOn: string }',
     '@spcy/lib.core.mst-model/Entity': '{ id: string }',
-    '@spcy/lib.core.mst-model/Person':
+    '@spcy/lib.core.mst-model/PersonEntity':
       '{ createdOn: string; updatedOn: string; id: string; firstName: string; lastName: string; age: (number | undefined?); isActive: (boolean | undefined?) }'
   },
-  rootType: '@spcy/lib.core.mst-model/Person',
+  rootType: MetaSchema.$defs.PersonEntity,
   data: {
     id: '00001',
     lastName: 'Doe',

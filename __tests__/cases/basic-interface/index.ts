@@ -8,7 +8,7 @@ export const testCase: TestCase<Person> = {
     '@spcy/lib.core.mst-model/Person':
       '{ firstName: string; lastName: string; age: number; isActive: boolean; location: { lat: number; lon: number } }'
   },
-  rootType: '@spcy/lib.core.mst-model/Person',
+  rootType: MetaSchema.$defs.Person,
   data: {
     age: 20,
     firstName: 'John',

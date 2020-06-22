@@ -7,7 +7,7 @@ export interface Audit {
   updatedOn: string;
 }
 
-export interface Person extends Audit, Entity {
+export interface PersonEntity extends Audit, Entity {
   firstName: string;
   lastName: string;
   age?: number;

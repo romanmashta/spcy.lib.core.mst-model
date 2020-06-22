@@ -7,7 +7,7 @@ export const testCase: TestCase<Config> = {
   tree: {
     '@spcy/lib.core.mst-model/Config': '{ colors: string[]; params: { key: string; value: string; index: number }[] }'
   },
-  rootType: '@spcy/lib.core.mst-model/Config',
+  rootType: MetaSchema.$defs.Config,
   data: {
     colors: ['red', 'gree', 'blue'],
     params: [{ key: 'one', value: 'v1', index: 0 }]

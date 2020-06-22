@@ -1,4 +1,4 @@
-export interface Config {
+export interface KeyedConfig {
   [name: string]: Section;
 }
 

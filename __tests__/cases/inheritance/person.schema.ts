@@ -27,8 +27,8 @@ export const AuditSchema: TypeInfo = {
 };
 SchemaRepository.register(AuditSchema);
 
-export const PersonSchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Person',
+export const PersonEntitySchema: TypeInfo = {
+  $id: '@spcy/lib.core.mst-model/PersonEntity',
   allOf: [
     {
       $ref: '@spcy/lib.core.mst-model/Audit'
@@ -56,12 +56,12 @@ export const PersonSchema: TypeInfo = {
     }
   ]
 };
-SchemaRepository.register(PersonSchema);
+SchemaRepository.register(PersonEntitySchema);
 
 export const MetaSchema: Module = {
   $defs: {
     Entity: EntitySchema,
     Audit: AuditSchema,
-    Person: PersonSchema
+    PersonEntity: PersonEntitySchema
   }
 };

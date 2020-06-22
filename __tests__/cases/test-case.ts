@@ -1,10 +1,10 @@
-import { Module } from '@spcy/lib.core.reflection';
+import { Module, TypeInfo } from '@spcy/lib.core.reflection';
 
 export interface TestCase<T> {
   meta: Module;
   tree: {
     [name: string]: string;
   };
-  rootType: string;
+  rootType: TypeInfo;
   data?: T;
 }

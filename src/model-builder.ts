@@ -2,16 +2,20 @@ import * as _ from 'lodash';
 import { IAnyType, types } from '@spcy/pub.mobx-state-tree';
 import * as cr from '@spcy/lib.core.reflection';
 import { SchemaRepository } from '@spcy/lib.core.reflection';
-import { Repository } from './repository';
+import { ModelResolver } from './model-resolver';
 
-const GlobalRepository = new Repository();
+export class ModelBuilder {
+  private resolver: ModelResolver;
 
-class ModelBuilder {
+  constructor(resolver: ModelResolver) {
+    this.resolver = resolver;
+  }
+
   buildModel = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType =>
     _.isObject(def.additionalProperties)
       ? types.map(this.buildType(def.additionalProperties))
       : types.model(
-          name || 'Object',
+          name || def.$id || 'Object',
           _.mapValues(def.properties, (p: cr.TypeInfo, key: string) =>
             _.includes(def.required, key) ? this.buildType(p) : types.maybe(this.buildType(p))
           )
@@ -40,7 +44,7 @@ class ModelBuilder {
   };
 
   buildTypeReference = (def: cr.TypeReference, resolve?: boolean): IAnyType =>
-    resolve ? this.resolveAndBuild(def.$ref) : types.late(() => GlobalRepository.resolve(def.$ref));
+    resolve ? this.resolveAndBuild(def.$ref) : types.late(() => this.resolver.resolve(def.$ref));
 
   buildConstLiteral = (def: cr.ConstLiteral): IAnyType => types.literal(def.const);
 
@@ -59,6 +63,7 @@ class ModelBuilder {
     return types.null;
   };
 
+  /*
   buildModule = (module: cr.Module): { [name: string]: IAnyType } => {
     const definitions = _.reduce(
       module.$defs,
@@ -67,7 +72,7 @@ class ModelBuilder {
     );
     GlobalRepository.register(definitions);
     return definitions;
-  };
+  }; */
 }
 
-export const buildModule = (module: cr.Module): { [name: string]: IAnyType } => new ModelBuilder().buildModule(module);
+// export const buildModule = (module: cr.Module): { [name: string]: IAnyType } => new ModelBuilder().buildModule(module);

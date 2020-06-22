@@ -1,13 +1,13 @@
 import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
 
-export const ConfigSchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Config',
+export const KeyedConfigSchema: TypeInfo = {
+  $id: '@spcy/lib.core.mst-model/KeyedConfig',
   type: 'object',
   additionalProperties: {
     $ref: '@spcy/lib.core.mst-model/Section'
   }
 };
-SchemaRepository.register(ConfigSchema);
+SchemaRepository.register(KeyedConfigSchema);
 
 export const SectionSchema: TypeInfo = {
   $id: '@spcy/lib.core.mst-model/Section',
@@ -26,7 +26,7 @@ SchemaRepository.register(SectionSchema);
 
 export const MetaSchema: Module = {
   $defs: {
-    Config: ConfigSchema,
+    KeyedConfig: KeyedConfigSchema,
     Section: SectionSchema
   }
 };

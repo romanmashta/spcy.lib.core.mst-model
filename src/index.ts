@@ -1,2 +1,3 @@
 export * from './model-builder';
-export * from './repository';
+export * from './model-repository';
+export * from './model-resolver';
