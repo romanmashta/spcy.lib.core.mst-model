@@ -5,7 +5,7 @@ import { MetaSchema } from './config.schema';
 export const testCase: TestCase<Config> = {
   meta: MetaSchema,
   tree: {
-    '@spcy/lib.core.mst-model/Config': '{ colors: string[]; params: { key: string; value: string; index: number }[] }'
+    '#/$defs/Config': '{ colors: string[]; params: { key: string; value: string; index: number }[] }'
   },
   rootType: MetaSchema.$defs.Config,
   data: {

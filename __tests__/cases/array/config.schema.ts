@@ -1,7 +1,7 @@
 import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
 
 export const ConfigSchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Config',
+  $id: '#/$defs/Config',
   type: 'object',
   required: ['colors', 'params'],
   properties: {

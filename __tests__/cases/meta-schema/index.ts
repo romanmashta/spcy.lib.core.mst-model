@@ -4,32 +4,30 @@ import { TestCase } from '../test-case';
 export const testCase: TestCase<Module> = {
   meta: MetaSchema,
   tree: {
-    '@spcy/lib.core.reflection/AllOf':
+    '#/$defs/AllOf':
       '{ $id: (string | undefined?); allOf: (late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }))[] }',
-    '@spcy/lib.core.reflection/ArrayType':
+    '#/$defs/ArrayType':
       '{ $id: (string | undefined?); type: "array"; items: (late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); })); minItems: (number | undefined?); maxItems: (number | undefined?); uniqueItems: (boolean | undefined?) }',
-    '@spcy/lib.core.reflection/BooleanType': '{ $id: (string | undefined?); type: "boolean" }',
-    '@spcy/lib.core.reflection/ConstLiteral':
-      '{ $id: (string | undefined?); const: (string | number | boolean | null) }',
-    '@spcy/lib.core.reflection/DateType': '{ $id: (string | undefined?); type: "date" }',
-    '@spcy/lib.core.reflection/EnumType': '{ $id: (string | undefined?); enum: string[] }',
-    '@spcy/lib.core.reflection/MetaInfo':
-      '{ sourceFiles: @spcy/lib.core.reflection/SourceFile[]; modules: @spcy/lib.core.reflection/Module[]; hasErrors: boolean }',
-    '@spcy/lib.core.reflection/Module':
+    '#/$defs/BooleanType': '{ $id: (string | undefined?); type: "boolean" }',
+    '#/$defs/ConstLiteral': '{ $id: (string | undefined?); const: (string | number | boolean | null) }',
+    '#/$defs/DateType': '{ $id: (string | undefined?); type: "date" }',
+    '#/$defs/EnumType': '{ $id: (string | undefined?); enum: string[] }',
+    '#/$defs/MetaInfo': '{ sourceFiles: #/$defs/SourceFile[]; modules: #/$defs/Module[]; hasErrors: boolean }',
+    '#/$defs/Module':
       '{ $defs: Map<string, (late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }))>? }',
-    '@spcy/lib.core.reflection/NullType': '{ $id: (string | undefined?); type: "null" }',
-    '@spcy/lib.core.reflection/NumberType':
+    '#/$defs/NullType': '{ $id: (string | undefined?); type: "null" }',
+    '#/$defs/NumberType':
       '{ $id: (string | undefined?); type: "number"; minimum: (number | undefined?); maximum: (number | undefined?) }',
-    '@spcy/lib.core.reflection/ObjectType':
+    '#/$defs/ObjectType':
       '{ $id: (string | undefined?); type: "object"; required: (string[] | undefined?); properties: (Map<string, (late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }))> | undefined?); additionalProperties: (((late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); })) | boolean) | undefined?) }',
-    '@spcy/lib.core.reflection/OneOf':
+    '#/$defs/OneOf':
       '{ $id: (string | undefined?); oneOf: (late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }))[] }',
-    '@spcy/lib.core.reflection/SourceFile': '{ fileName: string; module: @spcy/lib.core.reflection/Module }',
-    '@spcy/lib.core.reflection/StringType':
+    '#/$defs/SourceFile': '{ fileName: string; module: #/$defs/Module }',
+    '#/$defs/StringType':
       '{ $id: (string | undefined?); type: "string"; minLength: (number | undefined?); maxLength: (number | undefined?); pattern: (string | undefined?) }',
-    '@spcy/lib.core.reflection/TypeInfo':
-      '(@spcy/lib.core.reflection/ObjectType | @spcy/lib.core.reflection/StringType | @spcy/lib.core.reflection/BooleanType | @spcy/lib.core.reflection/NumberType | @spcy/lib.core.reflection/DateType | @spcy/lib.core.reflection/NullType | @spcy/lib.core.reflection/ArrayType | @spcy/lib.core.reflection/TypeReference | @spcy/lib.core.reflection/EnumType | @spcy/lib.core.reflection/ConstLiteral | @spcy/lib.core.reflection/OneOf | @spcy/lib.core.reflection/AllOf)',
-    '@spcy/lib.core.reflection/TypeReference': '{ $id: (string | undefined?); $ref: string }'
+    '#/$defs/TypeInfo':
+      '(#/$defs/ObjectType | #/$defs/StringType | #/$defs/BooleanType | #/$defs/NumberType | #/$defs/DateType | #/$defs/NullType | #/$defs/ArrayType | #/$defs/TypeReference | #/$defs/EnumType | #/$defs/ConstLiteral | #/$defs/OneOf | #/$defs/AllOf)',
+    '#/$defs/TypeReference': '{ $id: (string | undefined?); $ref: string; $package: (string | undefined?) }'
   },
   rootType: MetaSchema.$defs.Module,
   data: MetaSchema

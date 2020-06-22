@@ -1,27 +1,27 @@
 import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
 
 export const ShapesSchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Shapes',
+  $id: '#/$defs/Shapes',
   oneOf: [
     {
-      $ref: '@spcy/lib.core.mst-model/Circle'
+      $ref: '#/$defs/Circle'
     },
     {
-      $ref: '@spcy/lib.core.mst-model/Square'
+      $ref: '#/$defs/Square'
     }
   ]
 };
 SchemaRepository.register(ShapesSchema);
 
 export const PictureSchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Picture',
+  $id: '#/$defs/Picture',
   type: 'object',
   required: ['figures'],
   properties: {
     figures: {
       type: 'array',
       items: {
-        $ref: '@spcy/lib.core.mst-model/Shapes'
+        $ref: '#/$defs/Shapes'
       }
     }
   }
@@ -29,7 +29,7 @@ export const PictureSchema: TypeInfo = {
 SchemaRepository.register(PictureSchema);
 
 export const CircleSchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Circle',
+  $id: '#/$defs/Circle',
   type: 'object',
   required: ['radius'],
   properties: {
@@ -41,7 +41,7 @@ export const CircleSchema: TypeInfo = {
 SchemaRepository.register(CircleSchema);
 
 export const SquareSchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Square',
+  $id: '#/$defs/Square',
   type: 'object',
   required: ['side'],
   properties: {

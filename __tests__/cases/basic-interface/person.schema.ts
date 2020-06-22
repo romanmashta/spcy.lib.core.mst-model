@@ -1,7 +1,7 @@
 import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
 
 export const PersonSchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Person',
+  $id: '#/$defs/Person',
   type: 'object',
   required: ['firstName', 'lastName', 'age', 'isActive', 'location'],
   properties: {

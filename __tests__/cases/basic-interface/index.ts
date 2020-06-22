@@ -5,7 +5,7 @@ import { MetaSchema } from './person.schema';
 export const testCase: TestCase<Person> = {
   meta: MetaSchema,
   tree: {
-    '@spcy/lib.core.mst-model/Person':
+    '#/$defs/Person':
       '{ firstName: string; lastName: string; age: number; isActive: boolean; location: { lat: number; lon: number } }'
   },
   rootType: MetaSchema.$defs.Person,

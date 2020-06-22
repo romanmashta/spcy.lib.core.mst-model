@@ -5,9 +5,9 @@ import { MetaSchema } from './person.schema';
 export const testCase: TestCase<PersonEntity> = {
   meta: MetaSchema,
   tree: {
-    '@spcy/lib.core.mst-model/Audit': '{ createdOn: string; updatedOn: string }',
-    '@spcy/lib.core.mst-model/Entity': '{ id: string }',
-    '@spcy/lib.core.mst-model/PersonEntity':
+    '#/$defs/Audit': '{ createdOn: string; updatedOn: string }',
+    '#/$defs/Entity': '{ id: string }',
+    '#/$defs/PersonEntity':
       '{ createdOn: string; updatedOn: string; id: string; firstName: string; lastName: string; age: (number | undefined?); isActive: (boolean | undefined?) }'
   },
   rootType: MetaSchema.$defs.PersonEntity,

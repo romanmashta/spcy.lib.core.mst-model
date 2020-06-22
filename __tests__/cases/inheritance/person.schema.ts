@@ -1,7 +1,7 @@
 import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
 
 export const EntitySchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Entity',
+  $id: '#/$defs/Entity',
   type: 'object',
   required: ['id'],
   properties: {
@@ -13,7 +13,7 @@ export const EntitySchema: TypeInfo = {
 SchemaRepository.register(EntitySchema);
 
 export const AuditSchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/Audit',
+  $id: '#/$defs/Audit',
   type: 'object',
   required: ['createdOn', 'updatedOn'],
   properties: {
@@ -28,13 +28,13 @@ export const AuditSchema: TypeInfo = {
 SchemaRepository.register(AuditSchema);
 
 export const PersonEntitySchema: TypeInfo = {
-  $id: '@spcy/lib.core.mst-model/PersonEntity',
+  $id: '#/$defs/PersonEntity',
   allOf: [
     {
-      $ref: '@spcy/lib.core.mst-model/Audit'
+      $ref: '#/$defs/Audit'
     },
     {
-      $ref: '@spcy/lib.core.mst-model/Entity'
+      $ref: '#/$defs/Entity'
     },
     {
       type: 'object',
