@@ -31,6 +31,7 @@ export const ConfigSchema: TypeInfo = {
     }
   }
 };
+
 SchemaRepository.register(ConfigSchema);
 
 export const MetaSchema: Module = {

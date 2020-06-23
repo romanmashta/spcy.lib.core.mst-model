@@ -7,8 +7,8 @@ export const KeyedConfigSchema: TypeInfo = {
     $ref: '#/$defs/Section'
   }
 };
-SchemaRepository.register(KeyedConfigSchema);
 
+SchemaRepository.register(KeyedConfigSchema);
 export const SectionSchema: TypeInfo = {
   $id: '#/$defs/Section',
   type: 'object',
@@ -22,6 +22,7 @@ export const SectionSchema: TypeInfo = {
     }
   }
 };
+
 SchemaRepository.register(SectionSchema);
 
 export const MetaSchema: Module = {

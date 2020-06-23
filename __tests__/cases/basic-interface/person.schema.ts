@@ -31,6 +31,7 @@ export const PersonSchema: TypeInfo = {
     }
   }
 };
+
 SchemaRepository.register(PersonSchema);
 
 export const MetaSchema: Module = {

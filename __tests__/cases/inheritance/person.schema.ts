@@ -10,8 +10,8 @@ export const EntitySchema: TypeInfo = {
     }
   }
 };
-SchemaRepository.register(EntitySchema);
 
+SchemaRepository.register(EntitySchema);
 export const AuditSchema: TypeInfo = {
   $id: '#/$defs/Audit',
   type: 'object',
@@ -25,8 +25,8 @@ export const AuditSchema: TypeInfo = {
     }
   }
 };
-SchemaRepository.register(AuditSchema);
 
+SchemaRepository.register(AuditSchema);
 export const PersonEntitySchema: TypeInfo = {
   $id: '#/$defs/PersonEntity',
   allOf: [
@@ -56,6 +56,7 @@ export const PersonEntitySchema: TypeInfo = {
     }
   ]
 };
+
 SchemaRepository.register(PersonEntitySchema);
 
 export const MetaSchema: Module = {

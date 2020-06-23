@@ -11,8 +11,8 @@ export const ShapesSchema: TypeInfo = {
     }
   ]
 };
-SchemaRepository.register(ShapesSchema);
 
+SchemaRepository.register(ShapesSchema);
 export const PictureSchema: TypeInfo = {
   $id: '#/$defs/Picture',
   type: 'object',
@@ -26,8 +26,8 @@ export const PictureSchema: TypeInfo = {
     }
   }
 };
-SchemaRepository.register(PictureSchema);
 
+SchemaRepository.register(PictureSchema);
 export const CircleSchema: TypeInfo = {
   $id: '#/$defs/Circle',
   type: 'object',
@@ -38,8 +38,8 @@ export const CircleSchema: TypeInfo = {
     }
   }
 };
-SchemaRepository.register(CircleSchema);
 
+SchemaRepository.register(CircleSchema);
 export const SquareSchema: TypeInfo = {
   $id: '#/$defs/Square',
   type: 'object',
@@ -50,6 +50,7 @@ export const SquareSchema: TypeInfo = {
     }
   }
 };
+
 SchemaRepository.register(SquareSchema);
 
 export const MetaSchema: Module = {
