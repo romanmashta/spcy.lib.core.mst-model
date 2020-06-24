@@ -1,12 +1,9 @@
 import { TestCase } from '../test-case';
-import { Config } from './config.model';
-import { MetaSchema } from './config.schema';
+import { Config } from './index.model';
+import { MetaSchema } from './index.schema';
 
 export const testCase: TestCase<Config> = {
   meta: MetaSchema,
-  tree: {
-    '#/$defs/Config': '{ colors: string[]; params: { key: string; value: string; index: number }[] }'
-  },
   rootType: MetaSchema.$defs.Config,
   data: {
     colors: ['red', 'gree', 'blue'],

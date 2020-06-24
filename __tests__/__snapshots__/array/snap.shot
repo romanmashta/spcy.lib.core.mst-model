@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model array 1`] = `
+{
+  "colors": [
+    "red",
+    "gree",
+    "blue"
+  ],
+  "params": [
+    {
+      "key": "one",
+      "value": "v1",
+      "index": 0
+    }
+  ]
+}
+`;

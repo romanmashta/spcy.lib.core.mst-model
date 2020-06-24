@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model index-signature 1`] = `
+{
+  "#/$defs/KeyedConfig": "Map<string, #/$defs/Section>",
+  "#/$defs/Section": "{ id: string; secret: string }"
+}
+`;

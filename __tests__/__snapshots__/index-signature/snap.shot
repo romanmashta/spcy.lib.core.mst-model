@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model index-signature 1`] = `
+{
+  "chat": {
+    "id": "xxx",
+    "secret": "zzzz"
+  },
+  "server": {
+    "id": "xxx",
+    "secret": "zzzz"
+  }
+}
+`;

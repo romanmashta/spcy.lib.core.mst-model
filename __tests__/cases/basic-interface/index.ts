@@ -1,13 +1,9 @@
 import { TestCase } from '../test-case';
-import { Person } from './person.model';
-import { MetaSchema } from './person.schema';
+import { Person } from './index.model';
+import { MetaSchema } from './index.schema';
 
 export const testCase: TestCase<Person> = {
   meta: MetaSchema,
-  tree: {
-    '#/$defs/Person':
-      '{ firstName: string; lastName: string; age: number; isActive: boolean; location: { lat: number; lon: number } }'
-  },
   rootType: MetaSchema.$defs.Person,
   data: {
     age: 20,

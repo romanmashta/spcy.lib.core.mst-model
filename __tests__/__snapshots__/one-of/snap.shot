@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model one-of 1`] = `
+{
+  "figures": [
+    {
+      "side": 10
+    },
+    {
+      "radius": 20
+    },
+    {
+      "side": 1
+    }
+  ]
+}
+`;

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model inheritance 1`] = `
+{
+  "createdOn": "today",
+  "updatedOn": "few minutes ago",
+  "id": "00001",
+  "firstName": "John",
+  "lastName": "Doe"
+}
+`;

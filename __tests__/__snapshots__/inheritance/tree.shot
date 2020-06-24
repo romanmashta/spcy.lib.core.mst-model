@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model inheritance 1`] = `
+{
+  "#/$defs/Entity": "{ id: string }",
+  "#/$defs/Audit": "{ createdOn: string; updatedOn: string }",
+  "#/$defs/PersonEntity": "{ createdOn: string; updatedOn: string; id: string; firstName: string; lastName: string; age: (number | undefined?); isActive: (boolean | undefined?) }"
+}
+`;
