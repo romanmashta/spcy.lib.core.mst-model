@@ -12,9 +12,9 @@ addSerializer({
 const SNAPSHOTS_ROOT = '__snapshots__';
 const ROOT = '__tests__/cases';
 
-const assertModel = (caseName: string) => {
+const assertModel = async (caseName: string) => {
   const caseFile = path.resolve(`${ROOT}/${caseName}/index.ts`);
-  const { testCase } = require(caseFile);
+  const { testCase } = await import(caseFile);
 
   const model = _.reduce(testCase.meta.$defs, (r, m) => ({ ...r, [m.$id]: ModelRepository.resolve(m.$id) }), {});
   const result = _.mapValues(model, (t: IAnyType) => t.describe());
@@ -32,6 +32,6 @@ const assertModel = (caseName: string) => {
 
 const caseNames = ['array', 'basic-interface', 'one-of', 'index-signature', 'meta-schema', 'inheritance'];
 
-it.each(caseNames)('Process model %s', caseName => {
-  assertModel(caseName);
+it.each(caseNames)('Process model %s', async caseName => {
+  await assertModel(caseName);
 });
