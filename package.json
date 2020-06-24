@@ -33,7 +33,7 @@
     "jest-specific-snapshot": "^3.0.0",
     "ts-jest": "^26.1.0",
     "shx": "^0.3.2",
-    "@spcy/lib.core.typescript-reflection": "^1.0.0"
+    "@spcy/lib.dev.typescript-reflection": "^1.0.0"
   },
   "dependencies": {
     "@spcy/lib.core.reflection": "^1.0.0",
