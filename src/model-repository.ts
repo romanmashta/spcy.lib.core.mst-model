@@ -29,6 +29,6 @@ class ModelRepositoryInternal implements ModelResolver {
 export const ModelRepository: ModelResolver = new ModelRepositoryInternal();
 
 export function createInstance<T>(type: Prototype<T>, data: T): T & IStateTreeNode<IType<any, T, any>> {
-  const model = ModelRepository.resolve(type.package, type.id!);
+  const model = ModelRepository.resolve(type.$refPackage, type.$ref);
   return model.create(data) as T;
 }

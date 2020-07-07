@@ -1,10 +1,9 @@
 import * as r from '@spcy/lib.core.reflection';
 import * as m from './index.model';
 
-const PackageName = 'lib.core.mst-model';
-
 const PersonType: r.TypeInfo = {
   $id: 'Person',
+  $package: 'lib.core.mst-model',
   type: 'object',
   required: ['firstName', 'lastName', 'age', 'isActive', 'location'],
   properties: {
@@ -34,14 +33,15 @@ const PersonType: r.TypeInfo = {
     }
   }
 };
+
 const Person: r.Prototype<m.Person> = {
-  id: PersonType.$id,
-  package: PackageName,
+  $ref: PersonType.$id!,
+  $refPackage: PersonType.$package!,
   typeInfo: PersonType
 };
 
 export const IndexModule: r.Module = {
-  $id: PackageName,
+  $id: 'lib.core.mst-model',
   $defs: {
     Person: PersonType
   }

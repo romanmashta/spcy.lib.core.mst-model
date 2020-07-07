@@ -1,10 +1,9 @@
 import * as r from '@spcy/lib.core.reflection';
 import * as m from './index.model';
 
-const PackageName = 'lib.core.mst-model';
-
 const EntityType: r.TypeInfo = {
   $id: 'Entity',
+  $package: 'lib.core.mst-model',
   type: 'object',
   required: ['id'],
   properties: {
@@ -13,13 +12,16 @@ const EntityType: r.TypeInfo = {
     }
   }
 };
+
 const Entity: r.Prototype<m.Entity> = {
-  id: EntityType.$id,
-  package: PackageName,
+  $ref: EntityType.$id!,
+  $refPackage: EntityType.$package!,
   typeInfo: EntityType
 };
+
 const AuditType: r.TypeInfo = {
   $id: 'Audit',
+  $package: 'lib.core.mst-model',
   type: 'object',
   required: ['createdOn', 'updatedOn'],
   properties: {
@@ -31,19 +33,24 @@ const AuditType: r.TypeInfo = {
     }
   }
 };
+
 const Audit: r.Prototype<m.Audit> = {
-  id: AuditType.$id,
-  package: PackageName,
+  $ref: AuditType.$id!,
+  $refPackage: AuditType.$package!,
   typeInfo: AuditType
 };
+
 const PersonEntityType: r.TypeInfo = {
   $id: 'PersonEntity',
+  $package: 'lib.core.mst-model',
   allOf: [
     {
-      $ref: 'Audit'
+      $ref: 'Audit',
+      $refPackage: 'lib.core.mst-model'
     },
     {
-      $ref: 'Entity'
+      $ref: 'Entity',
+      $refPackage: 'lib.core.mst-model'
     },
     {
       type: 'object',
@@ -65,14 +72,15 @@ const PersonEntityType: r.TypeInfo = {
     }
   ]
 };
+
 const PersonEntity: r.Prototype<m.PersonEntity> = {
-  id: PersonEntityType.$id,
-  package: PackageName,
+  $ref: PersonEntityType.$id!,
+  $refPackage: PersonEntityType.$package!,
   typeInfo: PersonEntityType
 };
 
 export const IndexModule: r.Module = {
-  $id: PackageName,
+  $id: 'lib.core.mst-model',
   $defs: {
     Entity: EntityType,
     Audit: AuditType,

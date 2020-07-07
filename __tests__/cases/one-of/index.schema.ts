@@ -1,44 +1,52 @@
 import * as r from '@spcy/lib.core.reflection';
 import * as m from './index.model';
 
-const PackageName = 'lib.core.mst-model';
-
 const ShapesType: r.TypeInfo = {
   $id: 'Shapes',
+  $package: 'lib.core.mst-model',
   oneOf: [
     {
-      $ref: 'Circle'
+      $ref: 'Circle',
+      $refPackage: 'lib.core.mst-model'
     },
     {
-      $ref: 'Square'
+      $ref: 'Square',
+      $refPackage: 'lib.core.mst-model'
     }
   ]
 };
+
 const Shapes: r.Prototype<m.Shapes> = {
-  id: ShapesType.$id,
-  package: PackageName,
+  $ref: ShapesType.$id!,
+  $refPackage: ShapesType.$package!,
   typeInfo: ShapesType
 };
+
 const PictureType: r.TypeInfo = {
   $id: 'Picture',
+  $package: 'lib.core.mst-model',
   type: 'object',
   required: ['figures'],
   properties: {
     figures: {
       type: 'array',
       items: {
-        $ref: 'Shapes'
+        $ref: 'Shapes',
+        $refPackage: 'lib.core.mst-model'
       }
     }
   }
 };
+
 const Picture: r.Prototype<m.Picture> = {
-  id: PictureType.$id,
-  package: PackageName,
+  $ref: PictureType.$id!,
+  $refPackage: PictureType.$package!,
   typeInfo: PictureType
 };
+
 const CircleType: r.TypeInfo = {
   $id: 'Circle',
+  $package: 'lib.core.mst-model',
   type: 'object',
   required: ['radius'],
   properties: {
@@ -47,13 +55,16 @@ const CircleType: r.TypeInfo = {
     }
   }
 };
+
 const Circle: r.Prototype<m.Circle> = {
-  id: CircleType.$id,
-  package: PackageName,
+  $ref: CircleType.$id!,
+  $refPackage: CircleType.$package!,
   typeInfo: CircleType
 };
+
 const SquareType: r.TypeInfo = {
   $id: 'Square',
+  $package: 'lib.core.mst-model',
   type: 'object',
   required: ['side'],
   properties: {
@@ -62,14 +73,15 @@ const SquareType: r.TypeInfo = {
     }
   }
 };
+
 const Square: r.Prototype<m.Square> = {
-  id: SquareType.$id,
-  package: PackageName,
+  $ref: SquareType.$id!,
+  $refPackage: SquareType.$package!,
   typeInfo: SquareType
 };
 
 export const IndexModule: r.Module = {
-  $id: PackageName,
+  $id: 'lib.core.mst-model',
   $defs: {
     Shapes: ShapesType,
     Picture: PictureType,

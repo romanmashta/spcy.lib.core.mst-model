@@ -1,22 +1,25 @@
 import * as r from '@spcy/lib.core.reflection';
 import * as m from './index.model';
 
-const PackageName = 'lib.core.mst-model';
-
 const KeyedConfigType: r.TypeInfo = {
   $id: 'KeyedConfig',
+  $package: 'lib.core.mst-model',
   type: 'object',
   additionalProperties: {
-    $ref: 'Section'
+    $ref: 'Section',
+    $refPackage: 'lib.core.mst-model'
   }
 };
+
 const KeyedConfig: r.Prototype<m.KeyedConfig> = {
-  id: KeyedConfigType.$id,
-  package: PackageName,
+  $ref: KeyedConfigType.$id!,
+  $refPackage: KeyedConfigType.$package!,
   typeInfo: KeyedConfigType
 };
+
 const SectionType: r.TypeInfo = {
   $id: 'Section',
+  $package: 'lib.core.mst-model',
   type: 'object',
   required: ['id', 'secret'],
   properties: {
@@ -28,14 +31,15 @@ const SectionType: r.TypeInfo = {
     }
   }
 };
+
 const Section: r.Prototype<m.Section> = {
-  id: SectionType.$id,
-  package: PackageName,
+  $ref: SectionType.$id!,
+  $refPackage: SectionType.$package!,
   typeInfo: SectionType
 };
 
 export const IndexModule: r.Module = {
-  $id: PackageName,
+  $id: 'lib.core.mst-model',
   $defs: {
     KeyedConfig: KeyedConfigType,
     Section: SectionType

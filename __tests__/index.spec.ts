@@ -2,7 +2,7 @@ import '@spcy/lib.dev.tasty';
 import * as _ from 'lodash';
 import * as path from 'path';
 import { getSnapshot, IAnyType } from '@spcy/pub.mobx-state-tree';
-import { SchemaRepository } from '@spcy/lib.core.reflection';
+import { SchemaRepository, TypeReference } from '@spcy/lib.core.reflection';
 import { createInstance, ModelRepository } from '../src';
 
 const ROOT = '__tests__/cases';
@@ -13,7 +13,11 @@ const assertModel = async (caseName: string) => {
 
   SchemaRepository.registerTypes(testCase.meta);
 
-  const model = _.reduce(testCase.meta, (r, m) => ({ ...r, [m.id]: ModelRepository.resolve(m.package, m.id) }), {});
+  const model = _.reduce(
+    testCase.meta,
+    (r, m: TypeReference) => ({ ...r, [m.$ref]: ModelRepository.resolve(m.$refPackage, m.$ref) }),
+    {}
+  );
   const result = _.mapValues(model, (t: IAnyType) => t.describe());
 
   expect(result).toMatchTastyShot(caseName, `tree`);
@@ -25,8 +29,7 @@ const assertModel = async (caseName: string) => {
   expect(snap).toEqual(testCase.data);
 };
 
-// const caseNames = ['array', 'basic-interface', 'one-of', 'index-signature', 'meta-schema', 'inheritance'];
-const caseNames = ['meta-schema'];
+const caseNames = ['array', 'basic-interface', 'one-of', 'index-signature', 'meta-schema', 'inheritance'];
 
 it.each(caseNames)('Process model %s', async caseName => {
   await assertModel(caseName);

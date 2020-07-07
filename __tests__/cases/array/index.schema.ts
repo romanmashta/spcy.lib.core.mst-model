@@ -1,10 +1,9 @@
 import * as r from '@spcy/lib.core.reflection';
 import * as m from './index.model';
 
-const PackageName = 'lib.core.mst-model';
-
 const ConfigType: r.TypeInfo = {
   $id: 'Config',
+  $package: 'lib.core.mst-model',
   type: 'object',
   required: ['colors', 'params'],
   properties: {
@@ -34,14 +33,15 @@ const ConfigType: r.TypeInfo = {
     }
   }
 };
+
 const Config: r.Prototype<m.Config> = {
-  id: ConfigType.$id,
-  package: PackageName,
+  $ref: ConfigType.$id!,
+  $refPackage: ConfigType.$package!,
   typeInfo: ConfigType
 };
 
 export const IndexModule: r.Module = {
-  $id: PackageName,
+  $id: 'lib.core.mst-model',
   $defs: {
     Config: ConfigType
   }

@@ -6,53 +6,71 @@ exports[`Process model meta-schema 1`] = `
   "$defs": {
     "TypeInfo": {
       "$id": "TypeInfo",
+      "$package": "lib.core.reflection",
       "oneOf": [
         {
-          "$ref": "ObjectType"
+          "$ref": "ObjectType",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "StringType"
+          "$ref": "StringType",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "BooleanType"
+          "$ref": "BooleanType",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "NumberType"
+          "$ref": "NumberType",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "DateType"
+          "$ref": "DateType",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "NullType"
+          "$ref": "NullType",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "ArrayType"
+          "$ref": "ArrayType",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "TypeReference"
+          "$ref": "TypeReference",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "EnumType"
+          "$ref": "EnumType",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "ConstLiteral"
+          "$ref": "ConstLiteral",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "OneOf"
+          "$ref": "OneOf",
+          "$refPackage": "lib.core.reflection"
         },
         {
-          "$ref": "AllOf"
+          "$ref": "AllOf",
+          "$refPackage": "lib.core.reflection"
         }
       ]
     },
     "TypeReference": {
       "$id": "TypeReference",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
-        "$ref"
+        "$ref",
+        "$refPackage"
       ],
       "properties": {
         "$id": {
+          "type": "string"
+        },
+        "$package": {
           "type": "string"
         },
         "$ref": {
@@ -64,13 +82,15 @@ exports[`Process model meta-schema 1`] = `
         "$arguments": {
           "type": "array",
           "items": {
-            "$ref": "TypeReference"
+            "$ref": "TypeReference",
+            "$refPackage": "lib.core.reflection"
           }
         }
       }
     },
     "ArrayType": {
       "$id": "ArrayType",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "type",
@@ -80,11 +100,15 @@ exports[`Process model meta-schema 1`] = `
         "$id": {
           "type": "string"
         },
+        "$package": {
+          "type": "string"
+        },
         "type": {
           "const": "array"
         },
         "items": {
-          "$ref": "TypeInfo"
+          "$ref": "TypeInfo",
+          "$refPackage": "lib.core.reflection"
         },
         "minItems": {
           "type": "number"
@@ -99,12 +123,16 @@ exports[`Process model meta-schema 1`] = `
     },
     "ConstLiteral": {
       "$id": "ConstLiteral",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "const"
       ],
       "properties": {
         "$id": {
+          "type": "string"
+        },
+        "$package": {
           "type": "string"
         },
         "const": {
@@ -127,12 +155,16 @@ exports[`Process model meta-schema 1`] = `
     },
     "EnumType": {
       "$id": "EnumType",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "enum"
       ],
       "properties": {
         "$id": {
+          "type": "string"
+        },
+        "$package": {
           "type": "string"
         },
         "enum": {
@@ -145,12 +177,16 @@ exports[`Process model meta-schema 1`] = `
     },
     "NullType": {
       "$id": "NullType",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "type"
       ],
       "properties": {
         "$id": {
+          "type": "string"
+        },
+        "$package": {
           "type": "string"
         },
         "type": {
@@ -160,12 +196,16 @@ exports[`Process model meta-schema 1`] = `
     },
     "DateType": {
       "$id": "DateType",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "type"
       ],
       "properties": {
         "$id": {
+          "type": "string"
+        },
+        "$package": {
           "type": "string"
         },
         "type": {
@@ -175,12 +215,16 @@ exports[`Process model meta-schema 1`] = `
     },
     "BooleanType": {
       "$id": "BooleanType",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "type"
       ],
       "properties": {
         "$id": {
+          "type": "string"
+        },
+        "$package": {
           "type": "string"
         },
         "type": {
@@ -190,12 +234,16 @@ exports[`Process model meta-schema 1`] = `
     },
     "StringType": {
       "$id": "StringType",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "type"
       ],
       "properties": {
         "$id": {
+          "type": "string"
+        },
+        "$package": {
           "type": "string"
         },
         "type": {
@@ -214,12 +262,16 @@ exports[`Process model meta-schema 1`] = `
     },
     "NumberType": {
       "$id": "NumberType",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "type"
       ],
       "properties": {
         "$id": {
+          "type": "string"
+        },
+        "$package": {
           "type": "string"
         },
         "type": {
@@ -235,12 +287,16 @@ exports[`Process model meta-schema 1`] = `
     },
     "ObjectType": {
       "$id": "ObjectType",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "type"
       ],
       "properties": {
         "$id": {
+          "type": "string"
+        },
+        "$package": {
           "type": "string"
         },
         "type": {
@@ -255,13 +311,15 @@ exports[`Process model meta-schema 1`] = `
         "properties": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "TypeInfo"
+            "$ref": "TypeInfo",
+            "$refPackage": "lib.core.reflection"
           }
         },
         "additionalProperties": {
           "oneOf": [
             {
-              "$ref": "TypeInfo"
+              "$ref": "TypeInfo",
+              "$refPackage": "lib.core.reflection"
             },
             {
               "type": "boolean"
@@ -272,6 +330,7 @@ exports[`Process model meta-schema 1`] = `
     },
     "OneOf": {
       "$id": "OneOf",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "oneOf"
@@ -280,16 +339,21 @@ exports[`Process model meta-schema 1`] = `
         "$id": {
           "type": "string"
         },
+        "$package": {
+          "type": "string"
+        },
         "oneOf": {
           "type": "array",
           "items": {
-            "$ref": "TypeInfo"
+            "$ref": "TypeInfo",
+            "$refPackage": "lib.core.reflection"
           }
         }
       }
     },
     "AllOf": {
       "$id": "AllOf",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "allOf"
@@ -298,16 +362,21 @@ exports[`Process model meta-schema 1`] = `
         "$id": {
           "type": "string"
         },
+        "$package": {
+          "type": "string"
+        },
         "allOf": {
           "type": "array",
           "items": {
-            "$ref": "TypeInfo"
+            "$ref": "TypeInfo",
+            "$refPackage": "lib.core.reflection"
           }
         }
       }
     },
     "Module": {
       "$id": "Module",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "$defs"
@@ -316,16 +385,21 @@ exports[`Process model meta-schema 1`] = `
         "$id": {
           "type": "string"
         },
+        "$package": {
+          "type": "string"
+        },
         "$defs": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "TypeInfo"
+            "$ref": "TypeInfo",
+            "$refPackage": "lib.core.reflection"
           }
         }
       }
     },
     "ExportModule": {
       "$id": "ExportModule",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "fileName",
@@ -346,6 +420,7 @@ exports[`Process model meta-schema 1`] = `
     },
     "SourceFile": {
       "$id": "SourceFile",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "fileName",
@@ -368,11 +443,13 @@ exports[`Process model meta-schema 1`] = `
         "exports": {
           "type": "array",
           "items": {
-            "$ref": "ExportModule"
+            "$ref": "ExportModule",
+            "$refPackage": "lib.core.reflection"
           }
         },
         "module": {
-          "$ref": "Module"
+          "$ref": "Module",
+          "$refPackage": "lib.core.reflection"
         },
         "isEmpty": {
           "type": "boolean"
@@ -381,6 +458,7 @@ exports[`Process model meta-schema 1`] = `
     },
     "MetaInfo": {
       "$id": "MetaInfo",
+      "$package": "lib.core.reflection",
       "type": "object",
       "required": [
         "sourceFiles",
@@ -391,13 +469,15 @@ exports[`Process model meta-schema 1`] = `
         "sourceFiles": {
           "type": "array",
           "items": {
-            "$ref": "SourceFile"
+            "$ref": "SourceFile",
+            "$refPackage": "lib.core.reflection"
           }
         },
         "modules": {
           "type": "array",
           "items": {
-            "$ref": "Module"
+            "$ref": "Module",
+            "$refPackage": "lib.core.reflection"
           }
         },
         "hasErrors": {
