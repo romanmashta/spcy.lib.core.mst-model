@@ -2,50 +2,51 @@
 
 exports[`Process model meta-schema 1`] = `
 {
+  "$id": "lib.core.reflection",
   "$defs": {
     "TypeInfo": {
-      "$id": "#/$defs/TypeInfo",
+      "$id": "TypeInfo",
       "oneOf": [
         {
-          "$ref": "#/$defs/ObjectType"
+          "$ref": "ObjectType"
         },
         {
-          "$ref": "#/$defs/StringType"
+          "$ref": "StringType"
         },
         {
-          "$ref": "#/$defs/BooleanType"
+          "$ref": "BooleanType"
         },
         {
-          "$ref": "#/$defs/NumberType"
+          "$ref": "NumberType"
         },
         {
-          "$ref": "#/$defs/DateType"
+          "$ref": "DateType"
         },
         {
-          "$ref": "#/$defs/NullType"
+          "$ref": "NullType"
         },
         {
-          "$ref": "#/$defs/ArrayType"
+          "$ref": "ArrayType"
         },
         {
-          "$ref": "#/$defs/TypeReference"
+          "$ref": "TypeReference"
         },
         {
-          "$ref": "#/$defs/EnumType"
+          "$ref": "EnumType"
         },
         {
-          "$ref": "#/$defs/ConstLiteral"
+          "$ref": "ConstLiteral"
         },
         {
-          "$ref": "#/$defs/OneOf"
+          "$ref": "OneOf"
         },
         {
-          "$ref": "#/$defs/AllOf"
+          "$ref": "AllOf"
         }
       ]
     },
     "TypeReference": {
-      "$id": "#/$defs/TypeReference",
+      "$id": "TypeReference",
       "type": "object",
       "required": [
         "$ref"
@@ -57,13 +58,19 @@ exports[`Process model meta-schema 1`] = `
         "$ref": {
           "type": "string"
         },
-        "$package": {
+        "$refPackage": {
           "type": "string"
+        },
+        "$arguments": {
+          "type": "array",
+          "items": {
+            "$ref": "TypeReference"
+          }
         }
       }
     },
     "ArrayType": {
-      "$id": "#/$defs/ArrayType",
+      "$id": "ArrayType",
       "type": "object",
       "required": [
         "type",
@@ -77,7 +84,7 @@ exports[`Process model meta-schema 1`] = `
           "const": "array"
         },
         "items": {
-          "$ref": "#/$defs/TypeInfo"
+          "$ref": "TypeInfo"
         },
         "minItems": {
           "type": "number"
@@ -91,7 +98,7 @@ exports[`Process model meta-schema 1`] = `
       }
     },
     "ConstLiteral": {
-      "$id": "#/$defs/ConstLiteral",
+      "$id": "ConstLiteral",
       "type": "object",
       "required": [
         "const"
@@ -119,7 +126,7 @@ exports[`Process model meta-schema 1`] = `
       }
     },
     "EnumType": {
-      "$id": "#/$defs/EnumType",
+      "$id": "EnumType",
       "type": "object",
       "required": [
         "enum"
@@ -137,7 +144,7 @@ exports[`Process model meta-schema 1`] = `
       }
     },
     "NullType": {
-      "$id": "#/$defs/NullType",
+      "$id": "NullType",
       "type": "object",
       "required": [
         "type"
@@ -152,7 +159,7 @@ exports[`Process model meta-schema 1`] = `
       }
     },
     "DateType": {
-      "$id": "#/$defs/DateType",
+      "$id": "DateType",
       "type": "object",
       "required": [
         "type"
@@ -167,7 +174,7 @@ exports[`Process model meta-schema 1`] = `
       }
     },
     "BooleanType": {
-      "$id": "#/$defs/BooleanType",
+      "$id": "BooleanType",
       "type": "object",
       "required": [
         "type"
@@ -182,7 +189,7 @@ exports[`Process model meta-schema 1`] = `
       }
     },
     "StringType": {
-      "$id": "#/$defs/StringType",
+      "$id": "StringType",
       "type": "object",
       "required": [
         "type"
@@ -206,7 +213,7 @@ exports[`Process model meta-schema 1`] = `
       }
     },
     "NumberType": {
-      "$id": "#/$defs/NumberType",
+      "$id": "NumberType",
       "type": "object",
       "required": [
         "type"
@@ -227,7 +234,7 @@ exports[`Process model meta-schema 1`] = `
       }
     },
     "ObjectType": {
-      "$id": "#/$defs/ObjectType",
+      "$id": "ObjectType",
       "type": "object",
       "required": [
         "type"
@@ -248,13 +255,13 @@ exports[`Process model meta-schema 1`] = `
         "properties": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/$defs/TypeInfo"
+            "$ref": "TypeInfo"
           }
         },
         "additionalProperties": {
           "oneOf": [
             {
-              "$ref": "#/$defs/TypeInfo"
+              "$ref": "TypeInfo"
             },
             {
               "type": "boolean"
@@ -264,7 +271,7 @@ exports[`Process model meta-schema 1`] = `
       }
     },
     "OneOf": {
-      "$id": "#/$defs/OneOf",
+      "$id": "OneOf",
       "type": "object",
       "required": [
         "oneOf"
@@ -276,13 +283,13 @@ exports[`Process model meta-schema 1`] = `
         "oneOf": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/TypeInfo"
+            "$ref": "TypeInfo"
           }
         }
       }
     },
     "AllOf": {
-      "$id": "#/$defs/AllOf",
+      "$id": "AllOf",
       "type": "object",
       "required": [
         "allOf"
@@ -294,44 +301,86 @@ exports[`Process model meta-schema 1`] = `
         "allOf": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/TypeInfo"
+            "$ref": "TypeInfo"
           }
         }
       }
     },
     "Module": {
-      "$id": "#/$defs/Module",
+      "$id": "Module",
       "type": "object",
       "required": [
         "$defs"
       ],
       "properties": {
+        "$id": {
+          "type": "string"
+        },
         "$defs": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/$defs/TypeInfo"
+            "$ref": "TypeInfo"
           }
         }
       }
     },
-    "SourceFile": {
-      "$id": "#/$defs/SourceFile",
+    "ExportModule": {
+      "$id": "ExportModule",
       "type": "object",
       "required": [
         "fileName",
-        "module"
+        "importName",
+        "aliasName"
       ],
       "properties": {
         "fileName": {
           "type": "string"
         },
+        "importName": {
+          "type": "string"
+        },
+        "aliasName": {
+          "type": "string"
+        }
+      }
+    },
+    "SourceFile": {
+      "$id": "SourceFile",
+      "type": "object",
+      "required": [
+        "fileName",
+        "moduleName",
+        "moduleFileName",
+        "exports",
+        "module",
+        "isEmpty"
+      ],
+      "properties": {
+        "fileName": {
+          "type": "string"
+        },
+        "moduleName": {
+          "type": "string"
+        },
+        "moduleFileName": {
+          "type": "string"
+        },
+        "exports": {
+          "type": "array",
+          "items": {
+            "$ref": "ExportModule"
+          }
+        },
         "module": {
-          "$ref": "#/$defs/Module"
+          "$ref": "Module"
+        },
+        "isEmpty": {
+          "type": "boolean"
         }
       }
     },
     "MetaInfo": {
-      "$id": "#/$defs/MetaInfo",
+      "$id": "MetaInfo",
       "type": "object",
       "required": [
         "sourceFiles",
@@ -342,13 +391,13 @@ exports[`Process model meta-schema 1`] = `
         "sourceFiles": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/SourceFile"
+            "$ref": "SourceFile"
           }
         },
         "modules": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Module"
+            "$ref": "Module"
           }
         },
         "hasErrors": {

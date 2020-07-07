@@ -1,6 +1,5 @@
-import { IAnyType } from '@spcy/pub.mobx-state-tree';
+import { IAnyType, IStateTreeNode, IType } from '@spcy/pub.mobx-state-tree';
 import { Prototype, SchemaRepository } from '@spcy/lib.core.reflection';
-import { IStateTreeNode, IType } from '@spcy/pub.mobx-state-tree/dist/internal';
 import { ModelBuilder } from './model-builder';
 import { ModelResolver } from './model-resolver';
 

@@ -45,13 +45,13 @@ export class ModelBuilder {
     return this.buildType(typeDef);
   };
 
+  lateResolve = (ref: string): IAnyType => {
+    const packageRef = this.packageScope;
+    return this.resolver.resolve(packageRef, ref);
+  };
+
   buildTypeReference = (def: cr.TypeReference, resolve?: boolean): IAnyType =>
-    resolve
-      ? this.resolveAndBuild(def.$ref)
-      : types.late(() => {
-          const packageRef = this.packageScope;
-          return this.resolver.resolve(packageRef, def.$ref);
-        });
+    resolve ? this.resolveAndBuild(def.$ref) : types.late(() => this.lateResolve(def.$ref));
 
   buildConstLiteral = (def: cr.ConstLiteral): IAnyType => types.literal(def.const);
 

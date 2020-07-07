@@ -2,6 +2,6 @@
 
 exports[`Process model array 1`] = `
 {
-  "#/$defs/Config": "{ colors: string[]; params: { key: string; value: string; index: number }[] }"
+  "Config": "{ colors: string[]; params: { key: string; value: string; index: number }[] }"
 }
 `;

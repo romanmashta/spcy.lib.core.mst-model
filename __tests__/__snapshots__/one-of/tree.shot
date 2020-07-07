@@ -2,9 +2,9 @@
 
 exports[`Process model one-of 1`] = `
 {
-  "#/$defs/Shapes": "(#/$defs/Circle | #/$defs/Square)",
-  "#/$defs/Picture": "{ figures: (late(function () { return _this.resolver.resolve(def.$ref); }) | late(function () { return _this.resolver.resolve(def.$ref); }))[] }",
-  "#/$defs/Circle": "{ radius: number }",
-  "#/$defs/Square": "{ side: number }"
+  "Shapes": "(Circle | Square)",
+  "Picture": "{ figures: (late(function () { return _this.lateResolve(def.$ref); }) | late(function () { return _this.lateResolve(def.$ref); }))[] }",
+  "Circle": "{ radius: number }",
+  "Square": "{ side: number }"
 }
 `;

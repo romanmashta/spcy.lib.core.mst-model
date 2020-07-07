@@ -2,6 +2,6 @@
 
 exports[`Process model basic-interface 1`] = `
 {
-  "#/$defs/Person": "{ firstName: string; lastName: string; age: number; isActive: boolean; location: { lat: number; lon: number } }"
+  "Person": "{ firstName: string; lastName: string; age: number; isActive: boolean; location: { lat: number; lon: number } }"
 }
 `;

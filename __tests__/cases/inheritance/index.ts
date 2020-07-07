@@ -1,10 +1,10 @@
 import { TestCase } from '../test-case';
 import { PersonEntity } from './index.model';
-import { MetaSchema } from './index.schema';
+import { Types } from './index.schema';
 
 export const testCase: TestCase<PersonEntity> = {
-  meta: MetaSchema,
-  rootType: MetaSchema.$defs.PersonEntity,
+  meta: Types,
+  rootType: Types.PersonEntity,
   data: {
     id: '00001',
     lastName: 'Doe',
