@@ -39,19 +39,18 @@ export class ModelBuilder {
 
   buildAllOf = (def: cr.AllOf): IAnyType => types.compose(..._.map(def.allOf, t => this.buildType(t, undefined, true)));
 
-  resolveAndBuild = (ref: string): IAnyType => {
-    const typeDef = SchemaRepository.resolve(this.packageScope, ref);
-    if (!typeDef) throw new Error(`Cannot resolve type: ${ref}`);
+  resolveAndBuild = (def: cr.TypeReference): IAnyType => {
+    const typeDef = SchemaRepository.resolve(def.$refPackage, def.$ref);
+    if (!typeDef) throw new Error(`Cannot resolve type: ${def.$refPackage}/${def.$ref}`);
     return this.buildType(typeDef);
   };
 
-  lateResolve = (ref: string): IAnyType => {
-    const packageRef = this.packageScope;
-    return this.resolver.resolve(packageRef, ref);
+  lateResolve = (def: cr.TypeReference): IAnyType => {
+    return this.resolver.resolve(def.$refPackage, def.$ref);
   };
 
   buildTypeReference = (def: cr.TypeReference, resolve?: boolean): IAnyType =>
-    resolve ? this.resolveAndBuild(def.$ref) : types.late(() => this.lateResolve(def.$ref));
+    resolve ? this.resolveAndBuild(def) : types.late(() => this.lateResolve(def));
 
   buildConstLiteral = (def: cr.ConstLiteral): IAnyType => types.literal(def.const);
 

@@ -3,7 +3,7 @@
 exports[`Process model one-of 1`] = `
 {
   "Shapes": "(Circle | Square)",
-  "Picture": "{ figures: (late(function () { return _this.lateResolve(def.$ref); }) | late(function () { return _this.lateResolve(def.$ref); }))[] }",
+  "Picture": "{ figures: (late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }))[] }",
   "Circle": "{ radius: number }",
   "Square": "{ side: number }"
 }
