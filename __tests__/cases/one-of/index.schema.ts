@@ -1,35 +1,44 @@
-import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
+import * as r from '@spcy/lib.core.reflection';
+import * as m from './index.model';
 
-export const ShapesSchema: TypeInfo = {
-  $id: '#/$defs/Shapes',
+const PackageName = 'lib.core.mst-model';
+
+const ShapesType: r.TypeInfo = {
+  $id: 'Shapes',
   oneOf: [
     {
-      $ref: '#/$defs/Circle'
+      $ref: 'Circle'
     },
     {
-      $ref: '#/$defs/Square'
+      $ref: 'Square'
     }
   ]
 };
-
-SchemaRepository.register(ShapesSchema);
-export const PictureSchema: TypeInfo = {
-  $id: '#/$defs/Picture',
+const Shapes: r.Prototype<m.Shapes> = {
+  id: ShapesType.$id,
+  package: PackageName,
+  typeInfo: ShapesType
+};
+const PictureType: r.TypeInfo = {
+  $id: 'Picture',
   type: 'object',
   required: ['figures'],
   properties: {
     figures: {
       type: 'array',
       items: {
-        $ref: '#/$defs/Shapes'
+        $ref: 'Shapes'
       }
     }
   }
 };
-
-SchemaRepository.register(PictureSchema);
-export const CircleSchema: TypeInfo = {
-  $id: '#/$defs/Circle',
+const Picture: r.Prototype<m.Picture> = {
+  id: PictureType.$id,
+  package: PackageName,
+  typeInfo: PictureType
+};
+const CircleType: r.TypeInfo = {
+  $id: 'Circle',
   type: 'object',
   required: ['radius'],
   properties: {
@@ -38,10 +47,13 @@ export const CircleSchema: TypeInfo = {
     }
   }
 };
-
-SchemaRepository.register(CircleSchema);
-export const SquareSchema: TypeInfo = {
-  $id: '#/$defs/Square',
+const Circle: r.Prototype<m.Circle> = {
+  id: CircleType.$id,
+  package: PackageName,
+  typeInfo: CircleType
+};
+const SquareType: r.TypeInfo = {
+  $id: 'Square',
   type: 'object',
   required: ['side'],
   properties: {
@@ -50,14 +62,25 @@ export const SquareSchema: TypeInfo = {
     }
   }
 };
+const Square: r.Prototype<m.Square> = {
+  id: SquareType.$id,
+  package: PackageName,
+  typeInfo: SquareType
+};
 
-SchemaRepository.register(SquareSchema);
-
-export const MetaSchema: Module = {
+export const IndexModule: r.Module = {
+  $id: PackageName,
   $defs: {
-    Shapes: ShapesSchema,
-    Picture: PictureSchema,
-    Circle: CircleSchema,
-    Square: SquareSchema
+    Shapes: ShapesType,
+    Picture: PictureType,
+    Circle: CircleType,
+    Square: SquareType
   }
+};
+
+export const Types = {
+  Shapes,
+  Picture,
+  Circle,
+  Square
 };

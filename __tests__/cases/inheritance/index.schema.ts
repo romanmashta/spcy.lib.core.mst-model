@@ -1,7 +1,10 @@
-import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
+import * as r from '@spcy/lib.core.reflection';
+import * as m from './index.model';
 
-export const EntitySchema: TypeInfo = {
-  $id: '#/$defs/Entity',
+const PackageName = 'lib.core.mst-model';
+
+const EntityType: r.TypeInfo = {
+  $id: 'Entity',
   type: 'object',
   required: ['id'],
   properties: {
@@ -10,10 +13,13 @@ export const EntitySchema: TypeInfo = {
     }
   }
 };
-
-SchemaRepository.register(EntitySchema);
-export const AuditSchema: TypeInfo = {
-  $id: '#/$defs/Audit',
+const Entity: r.Prototype<m.Entity> = {
+  id: EntityType.$id,
+  package: PackageName,
+  typeInfo: EntityType
+};
+const AuditType: r.TypeInfo = {
+  $id: 'Audit',
   type: 'object',
   required: ['createdOn', 'updatedOn'],
   properties: {
@@ -25,16 +31,19 @@ export const AuditSchema: TypeInfo = {
     }
   }
 };
-
-SchemaRepository.register(AuditSchema);
-export const PersonEntitySchema: TypeInfo = {
-  $id: '#/$defs/PersonEntity',
+const Audit: r.Prototype<m.Audit> = {
+  id: AuditType.$id,
+  package: PackageName,
+  typeInfo: AuditType
+};
+const PersonEntityType: r.TypeInfo = {
+  $id: 'PersonEntity',
   allOf: [
     {
-      $ref: '#/$defs/Audit'
+      $ref: 'Audit'
     },
     {
-      $ref: '#/$defs/Entity'
+      $ref: 'Entity'
     },
     {
       type: 'object',
@@ -56,13 +65,23 @@ export const PersonEntitySchema: TypeInfo = {
     }
   ]
 };
+const PersonEntity: r.Prototype<m.PersonEntity> = {
+  id: PersonEntityType.$id,
+  package: PackageName,
+  typeInfo: PersonEntityType
+};
 
-SchemaRepository.register(PersonEntitySchema);
-
-export const MetaSchema: Module = {
+export const IndexModule: r.Module = {
+  $id: PackageName,
   $defs: {
-    Entity: EntitySchema,
-    Audit: AuditSchema,
-    PersonEntity: PersonEntitySchema
+    Entity: EntityType,
+    Audit: AuditType,
+    PersonEntity: PersonEntityType
   }
+};
+
+export const Types = {
+  Entity,
+  Audit,
+  PersonEntity
 };

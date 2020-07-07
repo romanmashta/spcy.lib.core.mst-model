@@ -1,16 +1,22 @@
-import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
+import * as r from '@spcy/lib.core.reflection';
+import * as m from './index.model';
 
-export const KeyedConfigSchema: TypeInfo = {
-  $id: '#/$defs/KeyedConfig',
+const PackageName = 'lib.core.mst-model';
+
+const KeyedConfigType: r.TypeInfo = {
+  $id: 'KeyedConfig',
   type: 'object',
   additionalProperties: {
-    $ref: '#/$defs/Section'
+    $ref: 'Section'
   }
 };
-
-SchemaRepository.register(KeyedConfigSchema);
-export const SectionSchema: TypeInfo = {
-  $id: '#/$defs/Section',
+const KeyedConfig: r.Prototype<m.KeyedConfig> = {
+  id: KeyedConfigType.$id,
+  package: PackageName,
+  typeInfo: KeyedConfigType
+};
+const SectionType: r.TypeInfo = {
+  $id: 'Section',
   type: 'object',
   required: ['id', 'secret'],
   properties: {
@@ -22,12 +28,21 @@ export const SectionSchema: TypeInfo = {
     }
   }
 };
+const Section: r.Prototype<m.Section> = {
+  id: SectionType.$id,
+  package: PackageName,
+  typeInfo: SectionType
+};
 
-SchemaRepository.register(SectionSchema);
-
-export const MetaSchema: Module = {
+export const IndexModule: r.Module = {
+  $id: PackageName,
   $defs: {
-    KeyedConfig: KeyedConfigSchema,
-    Section: SectionSchema
+    KeyedConfig: KeyedConfigType,
+    Section: SectionType
   }
+};
+
+export const Types = {
+  KeyedConfig,
+  Section
 };

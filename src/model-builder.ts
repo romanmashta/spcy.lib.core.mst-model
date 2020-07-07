@@ -6,8 +6,10 @@ import { ModelResolver } from './model-resolver';
 
 export class ModelBuilder {
   private resolver: ModelResolver;
+  public packageScope: string;
 
   constructor(resolver: ModelResolver) {
+    this.packageScope = 'root';
     this.resolver = resolver;
   }
 
@@ -38,13 +40,18 @@ export class ModelBuilder {
   buildAllOf = (def: cr.AllOf): IAnyType => types.compose(..._.map(def.allOf, t => this.buildType(t, undefined, true)));
 
   resolveAndBuild = (ref: string): IAnyType => {
-    const typeDef = SchemaRepository.resolve(ref);
+    const typeDef = SchemaRepository.resolve(this.packageScope, ref);
     if (!typeDef) throw new Error(`Cannot resolve type: ${ref}`);
     return this.buildType(typeDef);
   };
 
   buildTypeReference = (def: cr.TypeReference, resolve?: boolean): IAnyType =>
-    resolve ? this.resolveAndBuild(def.$ref) : types.late(() => this.resolver.resolve(def.$ref));
+    resolve
+      ? this.resolveAndBuild(def.$ref)
+      : types.late(() => {
+          const packageRef = this.packageScope;
+          return this.resolver.resolve(packageRef, def.$ref);
+        });
 
   buildConstLiteral = (def: cr.ConstLiteral): IAnyType => types.literal(def.const);
 

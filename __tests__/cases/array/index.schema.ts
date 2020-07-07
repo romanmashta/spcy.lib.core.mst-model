@@ -1,7 +1,10 @@
-import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
+import * as r from '@spcy/lib.core.reflection';
+import * as m from './index.model';
 
-export const ConfigSchema: TypeInfo = {
-  $id: '#/$defs/Config',
+const PackageName = 'lib.core.mst-model';
+
+const ConfigType: r.TypeInfo = {
+  $id: 'Config',
   type: 'object',
   required: ['colors', 'params'],
   properties: {
@@ -31,11 +34,19 @@ export const ConfigSchema: TypeInfo = {
     }
   }
 };
+const Config: r.Prototype<m.Config> = {
+  id: ConfigType.$id,
+  package: PackageName,
+  typeInfo: ConfigType
+};
 
-SchemaRepository.register(ConfigSchema);
-
-export const MetaSchema: Module = {
+export const IndexModule: r.Module = {
+  $id: PackageName,
   $defs: {
-    Config: ConfigSchema
+    Config: ConfigType
   }
+};
+
+export const Types = {
+  Config
 };

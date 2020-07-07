@@ -1,7 +1,10 @@
-import { TypeInfo, Module, SchemaRepository } from '@spcy/lib.core.reflection';
+import * as r from '@spcy/lib.core.reflection';
+import * as m from './index.model';
 
-export const PersonSchema: TypeInfo = {
-  $id: '#/$defs/Person',
+const PackageName = 'lib.core.mst-model';
+
+const PersonType: r.TypeInfo = {
+  $id: 'Person',
   type: 'object',
   required: ['firstName', 'lastName', 'age', 'isActive', 'location'],
   properties: {
@@ -31,11 +34,19 @@ export const PersonSchema: TypeInfo = {
     }
   }
 };
+const Person: r.Prototype<m.Person> = {
+  id: PersonType.$id,
+  package: PackageName,
+  typeInfo: PersonType
+};
 
-SchemaRepository.register(PersonSchema);
-
-export const MetaSchema: Module = {
+export const IndexModule: r.Module = {
+  $id: PackageName,
   $defs: {
-    Person: PersonSchema
+    Person: PersonType
   }
+};
+
+export const Types = {
+  Person
 };
