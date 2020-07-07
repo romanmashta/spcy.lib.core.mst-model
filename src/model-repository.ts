@@ -1,4 +1,4 @@
-import { IAnyType, IStateTreeNode, IType } from '@spcy/pub.mobx-state-tree';
+import { IAnyType, getSnapshot } from '@spcy/pub.mobx-state-tree';
 import { Prototype, SchemaRepository } from '@spcy/lib.core.reflection';
 import { ModelBuilder } from './model-builder';
 import { ModelResolver } from './model-resolver';
@@ -28,7 +28,9 @@ class ModelRepositoryInternal implements ModelResolver {
 
 export const ModelRepository: ModelResolver = new ModelRepositoryInternal();
 
-export const createInstance = <T>(type: Prototype<T>, data: T): T & IStateTreeNode<IType<any, T, any>> => {
+export const createInstance = <T>(type: Prototype<T>, data: T): T => {
   const model = ModelRepository.resolve(type.$refPackage, type.$ref);
   return model.create(data) as T;
 };
+
+export const getData = <T>(node: T): string => getSnapshot(node);
