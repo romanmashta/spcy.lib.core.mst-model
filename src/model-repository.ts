@@ -34,3 +34,9 @@ export const createInstance = <T>(type: Prototype<T>, data: T): T => {
 };
 
 export const getData = <T>(node: T): string => getSnapshot(node);
+
+declare global {
+  interface Object {
+    patch<T>(this: T, fn: (self: T) => void): void;
+  }
+}

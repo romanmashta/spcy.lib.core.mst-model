@@ -16,12 +16,16 @@ export class ModelBuilder {
   buildModel = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType =>
     _.isObject(def.additionalProperties)
       ? types.map(this.buildType(def.additionalProperties))
-      : types.model(
-          name || def.$id || 'Object',
-          _.mapValues(def.properties, (p: cr.TypeInfo, key: string) =>
-            _.includes(def.required, key) ? this.buildType(p) : types.maybe(this.buildType(p))
+      : types
+          .model(
+            name || def.$id || 'Object',
+            _.mapValues(def.properties, (p: cr.TypeInfo, key: string) =>
+              _.includes(def.required, key) ? this.buildType(p) : types.maybe(this.buildType(p))
+            )
           )
-        );
+          .actions(self => ({
+            patch: (f: Function) => f(self)
+          }));
 
   buildStringType = (): IAnyType => types.string;
 
