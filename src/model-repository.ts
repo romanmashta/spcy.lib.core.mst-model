@@ -9,7 +9,7 @@ class ModelRepositoryInternal implements ModelResolver {
   private repo: Map<string, IAnyType | null> = new Map<string, IAnyType | null>();
 
   buildModel = (ref: cr.TypeReference): IAnyType => {
-    const schema = SchemaRepository.resolve(ref.$refPackage, ref.$ref);
+    const schema = SchemaRepository.resolve(ref);
     if (!schema) {
       throw new Error(`Cannot resolve schema for ${ref}`);
     }

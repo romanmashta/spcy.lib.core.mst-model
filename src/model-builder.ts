@@ -44,7 +44,7 @@ export class ModelBuilder {
   buildAllOf = (def: cr.AllOf): IAnyType => types.compose(..._.map(def.allOf, t => this.buildType(t, undefined, true)));
 
   resolveAndBuild = (def: cr.TypeReference): IAnyType => {
-    const typeDef = SchemaRepository.resolve(def.$refPackage, def.$ref);
+    const typeDef = SchemaRepository.resolve(def);
     if (!typeDef) throw new Error(`Cannot resolve type: ${def.$refPackage}/${def.$ref}`);
     return this.buildType(typeDef);
   };
