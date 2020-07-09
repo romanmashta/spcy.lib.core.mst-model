@@ -79,10 +79,16 @@ exports[`Process model meta-schema 1`] = `
         "$refPackage": {
           "type": "string"
         },
+        "$typeArguments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "$arguments": {
           "type": "array",
           "items": {
-            "$ref": "TypeReference",
+            "$ref": "TypeInfo",
             "$refPackage": "lib.core.reflection"
           }
         }
@@ -298,6 +304,12 @@ exports[`Process model meta-schema 1`] = `
         },
         "$package": {
           "type": "string"
+        },
+        "$typeArguments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "type": {
           "const": "object"

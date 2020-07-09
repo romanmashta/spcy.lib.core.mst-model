@@ -13,11 +13,7 @@ const assertModel = async (caseName: string) => {
 
   SchemaRepository.registerTypes(testCase.meta);
 
-  const model = _.reduce(
-    testCase.meta,
-    (r, m: TypeReference) => ({ ...r, [m.$ref]: ModelRepository.resolve(m.$refPackage, m.$ref) }),
-    {}
-  );
+  const model = _.reduce(testCase.meta, (r, m: TypeReference) => ({ ...r, [m.$ref]: ModelRepository.resolve(m) }), {});
   const result = _.mapValues(model, (t: IAnyType) => t.describe());
 
   expect(result).toMatchTastyShot(caseName, `tree`);

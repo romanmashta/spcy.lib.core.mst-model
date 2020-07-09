@@ -50,7 +50,7 @@ export class ModelBuilder {
   };
 
   lateResolve = (def: cr.TypeReference): IAnyType => {
-    return this.resolver.resolve(def.$refPackage, def.$ref);
+    return this.resolver.resolve(def);
   };
 
   buildTypeReference = (def: cr.TypeReference, resolve?: boolean): IAnyType =>
