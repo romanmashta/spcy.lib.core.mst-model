@@ -7,14 +7,17 @@ export const testCase: TestCase<Data> = {
   rootType: Types.Data,
   data: {
     Users: {
-      count: 1,
+      meta: 'none',
       items: [
         { name: 'Bob', isActive: true },
         { name: 'Bill', isActive: true }
       ]
     },
     Tasks: {
-      count: 1,
+      meta: {
+        count: 2,
+        time: 100
+      },
       items: [
         { isDone: false, description: 'Task 1' },
         { isDone: false, description: 'Task 2' }

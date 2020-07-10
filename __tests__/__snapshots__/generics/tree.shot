@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model generics 1`] = `
+{
+  "User": "{ name: string; isActive: (boolean | undefined?) }",
+  "ToDo": "{ isDone: boolean; description: string }",
+  "Collection": "{ items: T[]; meta: U }",
+  "Meta": "{ count: number; time: number }",
+  "Data": "{ Users: Collection; Tasks: Collection }"
+}
+`;

@@ -1,4 +1,4 @@
-import { IAnyType, getSnapshot } from '@spcy/pub.mobx-state-tree';
+import { IAnyType, getSnapshot, types } from '@spcy/pub.mobx-state-tree';
 import { Prototype, SchemaRepository } from '@spcy/lib.core.reflection';
 import * as cr from '@spcy/lib.core.reflection';
 import { ModelBuilder } from './model-builder';
@@ -8,22 +8,26 @@ class ModelRepositoryInternal implements ModelResolver {
   private builder: ModelBuilder = new ModelBuilder(this);
   private repo: Map<string, IAnyType | null> = new Map<string, IAnyType | null>();
 
-  buildModel = (ref: cr.TypeReference): IAnyType => {
+  isGenericArgument = (ref: cr.TypeReference) => ref.$ref.length === 1;
+
+  buildModel = (ref: cr.TypeReference, typeId: string): IAnyType => {
+    if (this.isGenericArgument(ref)) return types.model(ref.$ref);
     const schema = SchemaRepository.resolve(ref);
     if (!schema) {
-      throw new Error(`Cannot resolve schema for ${ref}`);
+      throw new Error(`Cannot resolve schema for ${typeId}`);
     }
-    this.repo.set(ref.$ref, null);
+    this.repo.set(typeId, null);
     this.builder.packageScope = ref.$refPackage;
     const model = this.builder.buildType(schema);
-    this.repo.set(ref.$ref, model);
+    this.repo.set(typeId, model);
     return model;
   };
 
   resolve = (ref: cr.TypeReference): IAnyType => {
-    const model = this.repo.get(ref.$ref);
+    const typeId = `${ref.$refPackage}.${ref.$ref}.${ref.$refArguments || ''}`;
+    const model = this.repo.get(typeId);
     if (model === null) throw new ReferenceError();
-    return model || this.buildModel(ref);
+    return model || this.buildModel(ref, typeId);
   };
 }
 

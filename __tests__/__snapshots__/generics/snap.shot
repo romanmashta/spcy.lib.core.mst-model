@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model generics 1`] = `
+{
+  "Users": {
+    "items": [
+      {
+        "name": "Bob",
+        "isActive": true
+      },
+      {
+        "name": "Bill",
+        "isActive": true
+      }
+    ],
+    "meta": "none"
+  },
+  "Tasks": {
+    "items": [
+      {
+        "isDone": false,
+        "description": "Task 1"
+      },
+      {
+        "isDone": false,
+        "description": "Task 2"
+      }
+    ],
+    "meta": {
+      "count": 2,
+      "time": 100
+    }
+  }
+}
+`;

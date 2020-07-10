@@ -79,6 +79,9 @@ exports[`Process model meta-schema 1`] = `
         "$refPackage": {
           "type": "string"
         },
+        "$refArguments": {
+          "type": "string"
+        },
         "$typeArguments": {
           "type": "array",
           "items": {

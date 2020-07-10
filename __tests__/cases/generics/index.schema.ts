@@ -46,9 +46,9 @@ const ToDo: r.Prototype<m.ToDo> = {
 const CollectionType: r.TypeInfo = {
   $id: 'Collection',
   $package: 'lib.core.mst-model',
-  $typeArguments: ['T'],
+  $typeArguments: ['T', 'U'],
   type: 'object',
-  required: ['items', 'count'],
+  required: ['items', 'meta'],
   properties: {
     items: {
       type: 'array',
@@ -57,8 +57,9 @@ const CollectionType: r.TypeInfo = {
         $refPackage: 'lib.core.mst-model'
       }
     },
-    count: {
-      type: 'number'
+    meta: {
+      $ref: 'U',
+      $refPackage: 'lib.core.mst-model'
     }
   }
 };
@@ -67,6 +68,27 @@ const Collection: r.PrototypeInfo = {
   $ref: CollectionType.$id!,
   $refPackage: CollectionType.$package!,
   typeInfo: CollectionType
+};
+
+const MetaType: r.TypeInfo = {
+  $id: 'Meta',
+  $package: 'lib.core.mst-model',
+  type: 'object',
+  required: ['count', 'time'],
+  properties: {
+    count: {
+      type: 'number'
+    },
+    time: {
+      type: 'number'
+    }
+  }
+};
+
+const Meta: r.Prototype<m.Meta> = {
+  $ref: MetaType.$id!,
+  $refPackage: MetaType.$package!,
+  typeInfo: MetaType
 };
 
 const DataType: r.TypeInfo = {
@@ -82,8 +104,12 @@ const DataType: r.TypeInfo = {
         {
           $ref: 'User',
           $refPackage: 'lib.core.mst-model'
+        },
+        {
+          type: 'string'
         }
-      ]
+      ],
+      $refArguments: 'lib.core.mst-model.User|string'
     },
     Tasks: {
       $ref: 'Collection',
@@ -92,8 +118,13 @@ const DataType: r.TypeInfo = {
         {
           $ref: 'ToDo',
           $refPackage: 'lib.core.mst-model'
+        },
+        {
+          $ref: 'Meta',
+          $refPackage: 'lib.core.mst-model'
         }
-      ]
+      ],
+      $refArguments: 'lib.core.mst-model.ToDo|lib.core.mst-model.Meta'
     }
   }
 };
@@ -110,6 +141,7 @@ export const IndexModule: r.Module = {
     User: UserType,
     ToDo: ToDoType,
     Collection: CollectionType,
+    Meta: MetaType,
     Data: DataType
   }
 };
@@ -118,5 +150,6 @@ export const Types = {
   User,
   ToDo,
   Collection,
+  Meta,
   Data
 };

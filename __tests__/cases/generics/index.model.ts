@@ -8,12 +8,17 @@ export interface ToDo {
   description: string;
 }
 
-export interface Collection<T> {
+export interface Collection<T, U> {
   items: T[];
+  meta: U;
+}
+
+export interface Meta {
   count: number;
+  time: number;
 }
 
 export interface Data {
-  Users: Collection<User>;
-  Tasks: Collection<ToDo>;
+  Users: Collection<User, string>;
+  Tasks: Collection<ToDo, Meta>;
 }
