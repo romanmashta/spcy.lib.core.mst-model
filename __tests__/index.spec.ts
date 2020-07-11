@@ -2,7 +2,7 @@ import '@spcy/lib.dev.tasty';
 import * as _ from 'lodash';
 import * as path from 'path';
 import { getSnapshot, IAnyType } from '@spcy/pub.mobx-state-tree';
-import { SchemaRepository, TypeReference } from '@spcy/lib.core.reflection';
+import { PrototypeInfo, SchemaRepository } from '@spcy/lib.core.reflection';
 import { createInstance, ModelRepository } from '../src';
 
 const ROOT = '__tests__/cases';
@@ -13,7 +13,11 @@ const assertModel = async (caseName: string) => {
 
   SchemaRepository.registerTypes(testCase.meta);
 
-  const model = _.reduce(testCase.meta, (r, m: TypeReference) => ({ ...r, [m.$ref]: ModelRepository.resolve(m) }), {});
+  const model = _.reduce(
+    testCase.meta,
+    (r, m: PrototypeInfo) => ({ ...r, [m.ref.$ref]: ModelRepository.resolve(m.ref) }),
+    {}
+  );
   const result = _.mapValues(model, (t: IAnyType) => t.describe());
 
   expect(result).toMatchTastyShot(caseName, `tree`);

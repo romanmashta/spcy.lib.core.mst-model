@@ -35,8 +35,7 @@ const PersonType: r.TypeInfo = {
 };
 
 const Person: r.Prototype<m.Person> = {
-  $ref: PersonType.$id!,
-  $refPackage: PersonType.$package!,
+  ref: { $ref: PersonType.$id!, $refPackage: PersonType.$package! },
   typeInfo: PersonType
 };
 

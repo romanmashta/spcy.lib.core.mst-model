@@ -14,8 +14,7 @@ const EntityType: r.TypeInfo = {
 };
 
 const Entity: r.Prototype<m.Entity> = {
-  $ref: EntityType.$id!,
-  $refPackage: EntityType.$package!,
+  ref: { $ref: EntityType.$id!, $refPackage: EntityType.$package! },
   typeInfo: EntityType
 };
 
@@ -35,8 +34,7 @@ const AuditType: r.TypeInfo = {
 };
 
 const Audit: r.Prototype<m.Audit> = {
-  $ref: AuditType.$id!,
-  $refPackage: AuditType.$package!,
+  ref: { $ref: AuditType.$id!, $refPackage: AuditType.$package! },
   typeInfo: AuditType
 };
 
@@ -74,8 +72,7 @@ const PersonEntityType: r.TypeInfo = {
 };
 
 const PersonEntity: r.Prototype<m.PersonEntity> = {
-  $ref: PersonEntityType.$id!,
-  $refPackage: PersonEntityType.$package!,
+  ref: { $ref: PersonEntityType.$id!, $refPackage: PersonEntityType.$package! },
   typeInfo: PersonEntityType
 };
 

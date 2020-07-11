@@ -17,8 +17,7 @@ const ShapesType: r.TypeInfo = {
 };
 
 const Shapes: r.Prototype<m.Shapes> = {
-  $ref: ShapesType.$id!,
-  $refPackage: ShapesType.$package!,
+  ref: { $ref: ShapesType.$id!, $refPackage: ShapesType.$package! },
   typeInfo: ShapesType
 };
 
@@ -39,8 +38,7 @@ const PictureType: r.TypeInfo = {
 };
 
 const Picture: r.Prototype<m.Picture> = {
-  $ref: PictureType.$id!,
-  $refPackage: PictureType.$package!,
+  ref: { $ref: PictureType.$id!, $refPackage: PictureType.$package! },
   typeInfo: PictureType
 };
 
@@ -57,8 +55,7 @@ const CircleType: r.TypeInfo = {
 };
 
 const Circle: r.Prototype<m.Circle> = {
-  $ref: CircleType.$id!,
-  $refPackage: CircleType.$package!,
+  ref: { $ref: CircleType.$id!, $refPackage: CircleType.$package! },
   typeInfo: CircleType
 };
 
@@ -75,8 +72,7 @@ const SquareType: r.TypeInfo = {
 };
 
 const Square: r.Prototype<m.Square> = {
-  $ref: SquareType.$id!,
-  $refPackage: SquareType.$package!,
+  ref: { $ref: SquareType.$id!, $refPackage: SquareType.$package! },
   typeInfo: SquareType
 };
 

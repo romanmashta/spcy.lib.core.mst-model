@@ -35,8 +35,7 @@ const ConfigType: r.TypeInfo = {
 };
 
 const Config: r.Prototype<m.Config> = {
-  $ref: ConfigType.$id!,
-  $refPackage: ConfigType.$package!,
+  ref: { $ref: ConfigType.$id!, $refPackage: ConfigType.$package! },
   typeInfo: ConfigType
 };
 

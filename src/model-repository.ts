@@ -34,7 +34,7 @@ class ModelRepositoryInternal implements ModelResolver {
 export const ModelRepository: ModelResolver = new ModelRepositoryInternal();
 
 export const createInstance = <T>(type: Prototype<T>, data: T): T => {
-  const model = ModelRepository.resolve(type);
+  const model = ModelRepository.resolve(type.ref);
   return model.create(data) as T;
 };
 

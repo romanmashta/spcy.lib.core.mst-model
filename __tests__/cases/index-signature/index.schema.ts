@@ -12,8 +12,7 @@ const KeyedConfigType: r.TypeInfo = {
 };
 
 const KeyedConfig: r.Prototype<m.KeyedConfig> = {
-  $ref: KeyedConfigType.$id!,
-  $refPackage: KeyedConfigType.$package!,
+  ref: { $ref: KeyedConfigType.$id!, $refPackage: KeyedConfigType.$package! },
   typeInfo: KeyedConfigType
 };
 
@@ -33,8 +32,7 @@ const SectionType: r.TypeInfo = {
 };
 
 const Section: r.Prototype<m.Section> = {
-  $ref: SectionType.$id!,
-  $refPackage: SectionType.$package!,
+  ref: { $ref: SectionType.$id!, $refPackage: SectionType.$package! },
   typeInfo: SectionType
 };
 

@@ -17,8 +17,7 @@ const UserType: r.TypeInfo = {
 };
 
 const User: r.Prototype<m.User> = {
-  $ref: UserType.$id!,
-  $refPackage: UserType.$package!,
+  ref: { $ref: UserType.$id!, $refPackage: UserType.$package! },
   typeInfo: UserType
 };
 
@@ -38,8 +37,7 @@ const ToDoType: r.TypeInfo = {
 };
 
 const ToDo: r.Prototype<m.ToDo> = {
-  $ref: ToDoType.$id!,
-  $refPackage: ToDoType.$package!,
+  ref: { $ref: ToDoType.$id!, $refPackage: ToDoType.$package! },
   typeInfo: ToDoType
 };
 
@@ -65,8 +63,7 @@ const CollectionType: r.TypeInfo = {
 };
 
 const Collection: r.PrototypeInfo = {
-  $ref: CollectionType.$id!,
-  $refPackage: CollectionType.$package!,
+  ref: { $ref: CollectionType.$id!, $refPackage: CollectionType.$package! },
   typeInfo: CollectionType
 };
 
@@ -86,8 +83,7 @@ const MetaType: r.TypeInfo = {
 };
 
 const Meta: r.Prototype<m.Meta> = {
-  $ref: MetaType.$id!,
-  $refPackage: MetaType.$package!,
+  ref: { $ref: MetaType.$id!, $refPackage: MetaType.$package! },
   typeInfo: MetaType
 };
 
@@ -130,8 +126,7 @@ const DataType: r.TypeInfo = {
 };
 
 const Data: r.Prototype<m.Data> = {
-  $ref: DataType.$id!,
-  $refPackage: DataType.$package!,
+  ref: { $ref: DataType.$id!, $refPackage: DataType.$package! },
   typeInfo: DataType
 };
 
