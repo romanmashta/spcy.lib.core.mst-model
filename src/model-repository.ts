@@ -2,7 +2,7 @@ import { IAnyType, getSnapshot, types } from '@spcy/pub.mobx-state-tree';
 import { Prototype, SchemaRepository } from '@spcy/lib.core.reflection';
 import * as cr from '@spcy/lib.core.reflection';
 import { ModelBuilder } from './model-builder';
-import { ModelResolver, TypedObject } from './model-resolver';
+import { ModelResolver, ModelObject } from './model-resolver';
 
 class ModelRepositoryInternal implements ModelResolver {
   private builder: ModelBuilder = new ModelBuilder(this);
@@ -20,7 +20,7 @@ class ModelRepositoryInternal implements ModelResolver {
     this.builder.packageScope = ref.$refPackage;
     const model = this.builder.buildType(schema);
     this.repo.set(typeId, model);
-    const typedModel = (model as unknown) as TypedObject;
+    const typedModel = (model as unknown) as ModelObject;
     typedModel.$typeInfo = schema;
     return model;
   };
