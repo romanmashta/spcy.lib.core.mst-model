@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import { getSnapshot, IAnyType } from '@spcy/pub.mobx-state-tree';
 import { PrototypeInfo, SchemaRepository } from '@spcy/lib.core.reflection';
-import { createInstance, ModelRepository } from '../src';
+import { createInstance, ModelRepository } from '../../src';
 
 const ROOT = '__tests__/cases';
 

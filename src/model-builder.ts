@@ -72,17 +72,4 @@ export class ModelBuilder {
     if (cr.isConstLiteral(def)) return this.buildConstLiteral(def);
     return types.null;
   };
-
-  /*
-  buildModule = (module: cr.Module): { [name: string]: IAnyType } => {
-    const definitions = _.reduce(
-      module.$defs,
-      (r, def) => ({ ...r, [def.$id || '']: this.buildType(def, def.$id) }),
-      {}
-    );
-    GlobalRepository.register(definitions);
-    return definitions;
-  }; */
 }
-
-// export const buildModule = (module: cr.Module): { [name: string]: IAnyType } => new ModelBuilder().buildModule(module);
