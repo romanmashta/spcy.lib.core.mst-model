@@ -7,10 +7,12 @@ export interface CollectionBase {
   items?: unknown[];
 }
 
-export interface CollectionWithType<T> extends CollectionBase {
+export interface CollectionWithType<T> {
   items?: T[];
 }
 
 export interface DataWithOverrides {
-  Users: CollectionWithType<User>;
+  collections: {
+    active: CollectionWithType<User>;
+  };
 }

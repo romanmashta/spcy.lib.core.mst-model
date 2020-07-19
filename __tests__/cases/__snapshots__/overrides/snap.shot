@@ -2,17 +2,19 @@
 
 exports[`Process model overrides 1`] = `
 {
-  "Users": {
-    "items": [
-      {
-        "name": "Bob",
-        "isActive": true
-      },
-      {
-        "name": "Bill",
-        "isActive": true
-      }
-    ]
+  "collections": {
+    "active": {
+      "items": [
+        {
+          "name": "Bob",
+          "isActive": true
+        },
+        {
+          "name": "Bill",
+          "isActive": true
+        }
+      ]
+    }
   }
 }
 `;

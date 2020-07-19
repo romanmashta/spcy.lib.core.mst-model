@@ -44,24 +44,16 @@ const CollectionWithTypeType: r.TypeInfo = {
   $id: 'CollectionWithType',
   $package: 'lib.core.mst-model',
   $typeArguments: ['T'],
-  allOf: [
-    {
-      $ref: 'CollectionBase',
-      $refPackage: 'lib.core.mst-model'
-    },
-    {
-      type: 'object',
-      properties: {
-        items: {
-          type: 'array',
-          items: {
-            $ref: 'T',
-            $refPackage: 'lib.core.mst-model'
-          }
-        }
+  type: 'object',
+  properties: {
+    items: {
+      type: 'array',
+      items: {
+        $ref: 'T',
+        $refPackage: 'lib.core.mst-model'
       }
     }
-  ]
+  }
 };
 
 const CollectionWithType: r.PrototypeInfo = {
@@ -73,18 +65,24 @@ const DataWithOverridesType: r.TypeInfo = {
   $id: 'DataWithOverrides',
   $package: 'lib.core.mst-model',
   type: 'object',
-  required: ['Users'],
+  required: ['collections'],
   properties: {
-    Users: {
-      $ref: 'CollectionWithType',
-      $refPackage: 'lib.core.mst-model',
-      $arguments: [
-        {
-          $ref: 'User',
-          $refPackage: 'lib.core.mst-model'
+    collections: {
+      type: 'object',
+      required: ['active'],
+      properties: {
+        active: {
+          $ref: 'CollectionWithType',
+          $refPackage: 'lib.core.mst-model',
+          $arguments: [
+            {
+              $ref: 'User',
+              $refPackage: 'lib.core.mst-model'
+            }
+          ],
+          $refArguments: 'lib.core.mst-model.User'
         }
-      ],
-      $refArguments: 'lib.core.mst-model.User'
+      }
     }
   }
 };

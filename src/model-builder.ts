@@ -13,7 +13,23 @@ export class ModelBuilder {
     this.resolver = resolver;
   }
 
-  buildModel = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType =>
+  buildReferenceSet = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType =>
+    types.union({
+      dispatcher: (snapshot: cr.ReferenceSet) => {
+        const properties = def.properties!;
+        const typeRef = this.buildType(snapshot.$type!, undefined, false);
+        const $type = this.buildType(properties.$type);
+        const $ref = types.maybe(this.buildType(properties!.$ref));
+        const objects = types.map(typeRef);
+        return types.model(name || 'ReferenceSet', {
+          $type,
+          $ref,
+          objects
+        });
+      }
+    });
+
+  buildNonReferenceModel = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType =>
     _.isObject(def.additionalProperties)
       ? types.map(this.buildType(def.additionalProperties))
       : types
@@ -26,6 +42,15 @@ export class ModelBuilder {
           .actions(self => ({
             patch: (f: Function) => f(self)
           }));
+
+  buildModel = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType => {
+    switch (def.$id) {
+      case cr.Types.ReferenceSet.ref.$ref:
+        return this.buildReferenceSet(def, name);
+      default:
+        return this.buildNonReferenceModel(def, name);
+    }
+  };
 
   buildStringType = (): IAnyType => types.string;
 

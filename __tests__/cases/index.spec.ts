@@ -3,9 +3,12 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import { getSnapshot, IAnyType } from '@spcy/pub.mobx-state-tree';
 import { PrototypeInfo, SchemaRepository } from '@spcy/lib.core.reflection';
+import * as r from '@spcy/lib.core.reflection';
 import { createInstance, ModelRepository } from '../../src';
 
 const ROOT = '__tests__/cases';
+
+SchemaRepository.registerTypes(r.Types);
 
 const assertModel = async (caseName: string) => {
   const caseFile = path.resolve(`${ROOT}/${caseName}/index.ts`);

@@ -6,11 +6,13 @@ export const testCase: TestCase<DataWithOverrides> = {
   meta: Types,
   rootType: Types.DataWithOverrides,
   data: {
-    Users: {
-      items: [
-        { name: 'Bob', isActive: true },
-        { name: 'Bill', isActive: true }
-      ]
+    collections: {
+      active: {
+        items: [
+          { name: 'Bob', isActive: true },
+          { name: 'Bill', isActive: true }
+        ]
+      }
     }
   }
 };

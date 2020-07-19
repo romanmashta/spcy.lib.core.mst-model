@@ -505,6 +505,77 @@ exports[`Process model meta-schema 1`] = `
           "type": "boolean"
         }
       }
+    },
+    "Reference": {
+      "$id": "Reference",
+      "$package": "lib.core.reflection",
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "properties": {
+        "$type": {
+          "$ref": "TypeInfo",
+          "$refPackage": "lib.core.reflection"
+        },
+        "$ref": {
+          "type": "string"
+        },
+        "object": {
+          "type": "string"
+        }
+      }
+    },
+    "ReferenceWithType": {
+      "$id": "ReferenceWithType",
+      "$package": "lib.core.reflection",
+      "$typeArguments": [
+        "T"
+      ],
+      "type": "object",
+      "properties": {
+        "object": {
+          "$ref": "T",
+          "$refPackage": "lib.core.reflection"
+        }
+      }
+    },
+    "ReferenceSet": {
+      "$id": "ReferenceSet",
+      "$package": "lib.core.reflection",
+      "type": "object",
+      "required": [
+        "$ref"
+      ],
+      "properties": {
+        "$type": {
+          "$ref": "TypeInfo",
+          "$refPackage": "lib.core.reflection"
+        },
+        "$ref": {
+          "type": "string"
+        },
+        "objects": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ReferenceSetWithType": {
+      "$id": "ReferenceSetWithType",
+      "$package": "lib.core.reflection",
+      "$typeArguments": [
+        "T"
+      ],
+      "type": "object",
+      "properties": {
+        "objects": {
+          "$ref": "T",
+          "$refPackage": "lib.core.reflection"
+        }
+      }
     }
   }
 }

@@ -18,6 +18,10 @@ exports[`Process model meta-schema 1`] = `
   "Module": "{ $id: (string | undefined?); $package: (string | undefined?); $defs: Map<string, (late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }))>? }",
   "ExportModule": "{ fileName: string; importName: string; aliasName: string }",
   "SourceFile": "{ fileName: string; moduleName: string; moduleFileName: string; exports: ExportModule[]; module: Module; isEmpty: boolean }",
-  "MetaInfo": "{ sourceFiles: SourceFile[]; modules: Module[]; hasErrors: boolean }"
+  "MetaInfo": "{ sourceFiles: SourceFile[]; modules: Module[]; hasErrors: boolean }",
+  "Reference": "{ $type: ((late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); }) | late(function () { return _this.lateResolve(def); })) | undefined?); $ref: string; object: (string | undefined?) }",
+  "ReferenceWithType": "{ object: (T | undefined?) }",
+  "ReferenceSet": "()",
+  "ReferenceSetWithType": "{ objects: (T | undefined?) }"
 }
 `;
