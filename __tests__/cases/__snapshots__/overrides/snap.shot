@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model overrides 1`] = `
+{
+  "Users": {
+    "items": [
+      {
+        "name": "Bob",
+        "isActive": true
+      },
+      {
+        "name": "Bill",
+        "isActive": true
+      }
+    ]
+  }
+}
+`;

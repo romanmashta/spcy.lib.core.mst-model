@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`It patch model 1`] = `
+{
+  "todos": []
+}
+`;
+
 exports[`It patch tree 1`] = `
 {
   "todos": []

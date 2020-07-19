@@ -29,7 +29,16 @@ const assertModel = async (caseName: string) => {
   expect(snap).toEqual(testCase.data);
 };
 
-const caseNames = ['array', 'basic-interface', 'one-of', 'index-signature', 'meta-schema', 'inheritance'];
+const caseNames = [
+  'array',
+  'basic-interface',
+  'one-of',
+  'index-signature',
+  'meta-schema',
+  'inheritance',
+  'generics',
+  'overrides'
+];
 
 it.each(caseNames)('Process model %s', async caseName => {
   await assertModel(caseName);

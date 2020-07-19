@@ -1,0 +1,16 @@
+import { TestCase } from '../test-case';
+import { DataWithOverrides } from './index.model';
+import { Types } from './index.schema';
+
+export const testCase: TestCase<DataWithOverrides> = {
+  meta: Types,
+  rootType: Types.DataWithOverrides,
+  data: {
+    Users: {
+      items: [
+        { name: 'Bob', isActive: true },
+        { name: 'Bill', isActive: true }
+      ]
+    }
+  }
+};

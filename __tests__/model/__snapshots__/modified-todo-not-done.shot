@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`It patch model 1`] = `
+{
+  "todos": [
+    {
+      "isDone": false,
+      "description": "Item 1"
+    }
+  ]
+}
+`;
+
 exports[`It patch tree 1`] = `
 {
   "todos": [

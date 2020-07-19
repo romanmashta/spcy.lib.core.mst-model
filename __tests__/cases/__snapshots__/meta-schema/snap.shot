@@ -380,6 +380,12 @@ exports[`Process model meta-schema 1`] = `
         "$package": {
           "type": "string"
         },
+        "$typeArguments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "allOf": {
           "type": "array",
           "items": {

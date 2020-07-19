@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model overrides 1`] = `
+{
+  "User": "{ name: string; isActive: (boolean | undefined?) }",
+  "CollectionBase": "{ items: (string[] | undefined?) }",
+  "CollectionWithType": "{ items: (T[] | undefined?) }",
+  "DataWithOverrides": "{ Users: AnonymousModel }"
+}
+`;
