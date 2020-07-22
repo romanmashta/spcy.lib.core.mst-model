@@ -15,6 +15,7 @@
     "sourceMap": true,
     "declaration": true,
     "outDir": "dist",
+    "downlevelIteration": true
   },
   "include": [
     "src/**/*.ts",

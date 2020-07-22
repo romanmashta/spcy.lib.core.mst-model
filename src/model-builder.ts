@@ -26,9 +26,7 @@ export class ModelBuilder {
           $ref,
           objects
         });
-        const typedModel = (model as unknown) as ModelWithType;
-        typedModel.$typeInfo = def;
-        return model;
+        return this.decorateWithSchema(def, model);
       }
     });
 
@@ -52,10 +50,7 @@ export class ModelBuilder {
         return this.buildReferenceSet(def, name);
       }
       default: {
-        const model = this.buildNonReferenceModel(def, name);
-        const typedModel = (model as unknown) as ModelWithType;
-        typedModel.$typeInfo = def;
-        return model;
+        return this.buildNonReferenceModel(def, name);
       }
     }
   };
@@ -91,14 +86,20 @@ export class ModelBuilder {
 
   buildConstLiteral = (def: cr.ConstLiteral): IAnyType => types.literal(def.const);
 
+  decorateWithSchema = (def: cr.TypeInfo, model: IAnyType): IAnyType => {
+    const typedModel = (model as unknown) as ModelWithType;
+    typedModel.$typeInfo = def;
+    return model;
+  };
+
   buildType = (def: cr.TypeInfo, name?: string, resolve?: boolean): IAnyType => {
-    if (cr.isObjectType(def)) return this.buildModel(def, name);
+    if (cr.isObjectType(def)) return this.decorateWithSchema(def, this.buildModel(def, name));
     if (cr.isStringType(def)) return this.buildStringType();
     if (cr.isNumberType(def)) return this.buildNumberType();
     if (cr.isBooleanType(def)) return this.buildBooleanType();
     if (cr.isDateType(def)) return this.buildDateType();
     if (cr.isNullType(def)) return this.buildNullType();
-    if (cr.isArrayType(def)) return this.buildArray(def);
+    if (cr.isArrayType(def)) return this.decorateWithSchema(def, this.buildArray(def));
     if (cr.isOneOf(def)) return this.buildOneOf(def);
     if (cr.isAllOf(def)) return this.buildAllOf(def);
     if (cr.isTypeReference(def)) return this.buildTypeReference(def, resolve);
