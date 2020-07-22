@@ -21,11 +21,14 @@ export class ModelBuilder {
         const $type = this.buildType(properties.$type);
         const $ref = types.maybe(this.buildType(properties!.$ref));
         const objects = types.map(typeRef);
-        return types.model(name || 'ReferenceSet', {
+        const model = types.model(name || 'ReferenceSet', {
           $type,
           $ref,
           objects
         });
+        const typedModel = (model as unknown) as ModelWithType;
+        typedModel.$typeInfo = def;
+        return model;
       }
     });
 
@@ -45,8 +48,9 @@ export class ModelBuilder {
 
   buildModel = (def: cr.ObjectType, name: string | undefined = undefined): IAnyType => {
     switch (def.$id) {
-      case cr.Types.ReferenceSet.ref.$ref:
+      case cr.Types.ReferenceSet.ref.$ref: {
         return this.buildReferenceSet(def, name);
+      }
       default: {
         const model = this.buildNonReferenceModel(def, name);
         const typedModel = (model as unknown) as ModelWithType;
