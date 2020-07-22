@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import { IAnyType, types } from '@spcy/pub.mobx-state-tree';
 import * as cr from '@spcy/lib.core.reflection';
 import { SchemaRepository } from '@spcy/lib.core.reflection';
-import { ModelResolver } from './model-resolver';
+import { ModelResolver, ModelWithType } from './model-resolver';
 
 export class ModelBuilder {
   private resolver: ModelResolver;
@@ -47,8 +47,12 @@ export class ModelBuilder {
     switch (def.$id) {
       case cr.Types.ReferenceSet.ref.$ref:
         return this.buildReferenceSet(def, name);
-      default:
-        return this.buildNonReferenceModel(def, name);
+      default: {
+        const model = this.buildNonReferenceModel(def, name);
+        const typedModel = (model as unknown) as ModelWithType;
+        typedModel.$typeInfo = def;
+        return model;
+      }
     }
   };
 
