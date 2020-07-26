@@ -1,5 +1,13 @@
-import { IAnyType, getSnapshot, types, getType, isStateTreeNode, IAnyStateTreeNode } from '@spcy/pub.mobx-state-tree';
-import { Prototype, SchemaRepository } from '@spcy/lib.core.reflection';
+import {
+  IAnyType,
+  getSnapshot,
+  types,
+  getType,
+  isStateTreeNode,
+  IAnyStateTreeNode,
+  getParent
+} from '@spcy/pub.mobx-state-tree';
+import { Prototype, SchemaRepository, TypeReference } from '@spcy/lib.core.reflection';
 import * as cr from '@spcy/lib.core.reflection';
 import { ModelBuilder } from './model-builder';
 import { ModelResolver, ModelWithType } from './model-resolver';
@@ -35,15 +43,21 @@ class ModelRepositoryInternal implements ModelResolver {
 
 export const ModelRepository: ModelResolver = new ModelRepositoryInternal();
 
-export const createInstance = <T>(type: Prototype<T>, data: T): T => {
-  const model = ModelRepository.resolve(type.ref);
+export const createInstanceForRef = <T>(typeRef: TypeReference, data?: T): T => {
+  const model = ModelRepository.resolve(typeRef);
   return model.create(data) as T;
+};
+
+export const createInstance = <T>(type: Prototype<T>, data: T): T => {
+  return createInstanceForRef(type.ref, data);
 };
 
 export const isObject = (object: unknown): boolean => isStateTreeNode(object);
 
 export const getObjectSchema = (object: unknown): cr.TypeInfo =>
   ((getType(object as IAnyStateTreeNode) as unknown) as ModelWithType).$typeInfo;
+
+export const getParentObject = (object: unknown): unknown => getParent(object as IAnyStateTreeNode) as unknown;
 
 export const getData = <T>(node: T): string => getSnapshot(node);
 
