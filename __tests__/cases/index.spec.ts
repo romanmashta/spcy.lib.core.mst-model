@@ -37,10 +37,11 @@ const caseNames = [
   'basic-interface',
   'one-of',
   'index-signature',
-  'meta-schema',
+  // 'meta-schema',
   'inheritance',
   'generics',
-  'overrides'
+  'overrides',
+  'reference-set'
 ];
 
 it.each(caseNames)('Process model %s', async caseName => {

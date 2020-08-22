@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model reference-set 1`] = `
+{
+  "NamedObject": "{ name: string }",
+  "IndexedObject": "{ index: number }",
+  "Item": "(NamedObject | IndexedObject)",
+  "ObjectCollection": "{ name: string; collection: () }"
+}
+`;

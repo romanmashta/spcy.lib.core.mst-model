@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Process model reference-set 1`] = `
+{
+  "name": "test",
+  "collection": {
+    "$type": {
+      "$ref": "Item",
+      "$refPackage": "lib.core.mst-model"
+    },
+    "$ref": "/collection/tests",
+    "objects": {
+      "one": {
+        "name": "one"
+      },
+      "two": {
+        "name": "two"
+      },
+      "three": {
+        "name": "three"
+      },
+      "four": {
+        "index": 4
+      }
+    }
+  }
+}
+`;
